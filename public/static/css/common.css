@@ -1,0 +1,144 @@
+html,body {
+    background-color: #fff
+}
+
+.v-breadcrumb {
+    border-bottom: solid 1px #cfd5d8;
+    margin-bottom: 5px
+}
+
+.v-control {
+    margin-top: 8px
+}
+
+.v-operate-bar {
+    margin-bottom: 5px
+}
+
+.v-search-bar>* {
+    margin-right: 5px;
+    float: left
+}
+
+.v-search-bar input,.v-search-bar select {
+    width: 165px;
+    border: solid 1px #ccc;
+    background-color: #fff
+}
+
+#btnSearch {
+    border-radius: 2px
+}
+
+.v-verify-code-block {
+    height: 34px;
+    overflow: hidden
+}
+
+.v-verify-code-block img {
+    width: 100px;
+    position: relative;
+    display: inline-block;
+    top: -34px;
+    cursor: pointer
+}
+
+.panel {
+    width: auto;
+    border: solid 1px #ddd;
+    border-radius: 2px;
+    background-color: #fff
+}
+
+.panel-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px
+}
+
+.form-group {
+    width: 420px;
+    margin: 0 auto 7px auto
+}
+
+.form-group label {
+    width: 120px;
+    margin-top: 7px;
+    text-align: right
+}
+
+.form-group input,.form-group select {
+    width: 300px;
+    margin-left: 120px
+}
+
+.v-control-block {
+    text-align: right
+}
+
+.v-control-block input {
+    width: auto;
+    display: inline-block;
+    margin-left: 5px;
+    padding: 6px 15px
+}
+
+#divWest {
+    width: 50%;
+    float: left
+}
+
+#divEast {
+    width: 50%;
+    float: right
+}
+
+.v-form-flow .tab-nav {
+    border-bottom: 1px solid #ddd;
+    border-bottom-color: #eaf0f7;
+    margin-bottom: 7px
+}
+
+.v-form-flow .tab-nav label {
+    color: #6dc3ea !important;
+    border-bottom: 2px solid #6dc3ea;
+    padding: 7px 20px 3px 20px;
+    margin-bottom: -1px
+}
+
+.v-form-flow .tab-panel .form-group {
+    margin: 0
+}
+
+.v-form-flow .tab-panel .form-group label {
+    margin-top: 0
+}
+
+#tabMain tbody td {
+    font-size: 13px;
+    padding: 5px 8px
+}
+
+.table tbody tr td:last-child a {
+    cursor: pointer
+}
+
+.table tbody tr td:last-child a:not(:first-child) {
+    margin-left: 5px
+}
+
+select.form-control {
+    padding: 6px 12px 6px 8px
+}
+
+.fixed-table-summary td {
+    padding-right: 15px
+}
+
+.fixed-table-summary td.title {
+    font-weight: bold
+}
+
+.fixed-table-summary tbody {
+    color: #333
+}

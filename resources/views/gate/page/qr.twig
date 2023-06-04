@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>QR</title>
+    </head>
+    <body>
+        {% if qr %}
+            <image src="{{ qr }}"/>
+        {% else %}
+            <strong>QR expired!</strong>
+        {% endif %}
+    </body>
+</html>

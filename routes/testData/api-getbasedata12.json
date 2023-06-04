@@ -1,0 +1,149 @@
+{
+    "success": 1,
+    "result": {
+        "settlementOrderStatus": [
+            {
+                "key": "WaitTransfer",
+                "value": "等待划款"
+            },
+            {
+                "key": "Transfered",
+                "value": "已划款"
+            },
+            {
+                "key": "Success",
+                "value": "划款成功"
+            },
+            {
+                "key": "Fail",
+                "value": "划款失败"
+            }
+        ],
+        "bankCode": [
+            {
+                "key": "CMB",
+                "value": "招商银行"
+            },
+            {
+                "key": "ICBC",
+                "value": "中国工商银行"
+            },
+            {
+                "key": "ABC",
+                "value": "中国农业银行"
+            },
+            {
+                "key": "CCB",
+                "value": "中国建设银行"
+            },
+            {
+                "key": "BOC",
+                "value": "中国银行"
+            },
+            {
+                "key": "SPDB",
+                "value": "浦发银行"
+            },
+            {
+                "key": "BCOM",
+                "value": "中国交通银行"
+            },
+            {
+                "key": "CMBC",
+                "value": "中国民生银行"
+            },
+            {
+                "key": "SDB",
+                "value": "深圳发展银行"
+            },
+            {
+                "key": "GDB",
+                "value": "广东发展银行"
+            },
+            {
+                "key": "CITIC",
+                "value": "中信银行"
+            },
+            {
+                "key": "HXB",
+                "value": "华夏银行"
+            },
+            {
+                "key": "CIB",
+                "value": "兴业银行"
+            },
+            {
+                "key": "GZCB",
+                "value": "广州银行"
+            },
+            {
+                "key": "UPOP",
+                "value": "银联在线支付"
+            },
+            {
+                "key": "JSB",
+                "value": "江苏银行"
+            },
+            {
+                "key": "SRCB",
+                "value": "上海农村商业银行"
+            },
+            {
+                "key": "BOB",
+                "value": "北京银行"
+            },
+            {
+                "key": "CBHB",
+                "value": "渤海银行"
+            },
+            {
+                "key": "BJRCB",
+                "value": "北京农商银行"
+            },
+            {
+                "key": "NJCB",
+                "value": "南京银行"
+            },
+            {
+                "key": "CEB",
+                "value": "中国光大银行"
+            },
+            {
+                "key": "BEA",
+                "value": "东亚银行"
+            },
+            {
+                "key": "NBCB",
+                "value": "宁波银行"
+            },
+            {
+                "key": "HZB",
+                "value": "杭州银行"
+            },
+            {
+                "key": "PAB",
+                "value": "平安银行"
+            },
+            {
+                "key": "HSB",
+                "value": "徽商银行"
+            },
+            {
+                "key": "CZB",
+                "value": "浙商银行"
+            },
+            {
+                "key": "SHB",
+                "value": "上海银行"
+            },
+            {
+                "key": "PSBC",
+                "value": "中国邮政储蓄银行"
+            },
+            {
+                "key": "DLB",
+                "value": "大连银行"
+            }
+        ]
+    }
+}

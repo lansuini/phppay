@@ -1,0 +1,29 @@
+{
+    "success": 1,
+    "result": {
+        "merchantUserLevel": [
+            {
+                "key": "MerchantManager",
+                "value": "商户管理员"
+            },
+            {
+                "key": "PlatformManager",
+                "value": "充值管理员"
+            }
+        ],
+        "merchantUserStatus": [
+            {
+                "key": "Normal",
+                "value": "正常"
+            },
+            {
+                "key": "Exception",
+                "value": "异常"
+            },
+            {
+                "key": "Close",
+                "value": "关闭"
+            }
+        ]
+    }
+}

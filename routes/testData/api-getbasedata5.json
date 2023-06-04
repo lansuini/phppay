@@ -1,0 +1,35 @@
+{
+    "success": 1,
+    "result": {
+        "commonStatus": [
+            {
+                "key": "Normal",
+                "value": "正常"
+            },
+            {
+                "key": "Close",
+                "value": "关闭"
+            }
+        ],
+        "switchType": [
+            {
+                "key": "1",
+                "value": "启用"
+            },
+            {
+                "key": "0",
+                "value": "关闭"
+            }
+        ],
+        "settlementType": [
+            {
+                "key": "OverplusT1Settlement",
+                "value": "剩余T1结算"
+            },
+            {
+                "key": "OverplusD1Settlement",
+                "value": "剩余D1结算"
+            }
+        ]
+    }
+}

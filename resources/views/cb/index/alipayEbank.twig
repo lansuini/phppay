@@ -1,0 +1,236 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>支付通道</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="/static/plugin/layer/css/layui.css?ver={{ globalJsVer }}" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/css/pay.css?ver={{ globalJsVer }}">
+    {#<link id="layuicss-layer" rel="stylesheet" href="http://alipai1.wujianglong.com.cn/public/js/layer/theme/default/layer.css?v=3.1.1" media="all">#}
+    <link id="layuicss-layer" rel="stylesheet" type="text/css" href="/static/plugin/layer/theme/default/layer.css?v=3.1.1&ver={{ globalJsVer }}" media="all">
+    <link id="layuicss-layuiAdmin" rel="stylesheet" href="/static/css/admin.css?v=1.0.0 pro-1&ver={{ globalJsVer }}" media="all"></head>
+<body layadmin-themealias="classic-black-header" class="layui-layout-body">
+<div class="layui-fluid" id="LAY-app-message">
+    <div class="layui-card">
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">支付充值</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <form id="formPay" class="layui-form center" lay-filter="formPay">
+                        <input type="hidden" name="bankCode" id="bankCode">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">支付金额(元)</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="amount" lay-verify="required" class="layui-input" placeholder="请输入支付金额" value="{{ orderData.orderAmount }}" readonly="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item" id="bankDiv" hidden="hidden" style="display: block;">
+                            <label class="layui-form-label">选择银行</label>
+                            <div id="bankList" class="layui-input-block myb-bank-flex">
+                                <div class="item" id="bank1" onclick="confirmPay(1)" data-bankname="中国工商银行"><img src="/static/image/bank/icbc.png" alt="中国工商银行"></div>
+                                <div class="item" id="bank3" onclick="confirmPay(3)" data-bankname="中国农业银行"><img src="/static/image/bank/abc.png" alt="中国农业银行"></div>
+                                <div class="item" id="bank4" onclick="confirmPay(4)" data-bankname="中国邮政储蓄银行"><img src="/static/image/bank/psbc.png" alt="中国邮政储蓄银行"></div>
+                                <div class="item" id="bank5" onclick="confirmPay(5)" data-bankname="交通银行"><img src="/static/image/bank/comm.png" alt="交通银行"></div>
+                                <div class="item" id="bank6" onclick="confirmPay(6)" data-bankname="招商银行"><img src="/static/image/bank/cmb.png" alt="招商银行"></div>
+                                <div class="item" id="bank7" onclick="confirmPay(7)" data-bankname="中国银行"><img src="/static/image/bank/boc.png" alt="中国银行"></div>
+                                <div class="item" id="bank8" onclick="confirmPay(8)" data-bankname="中国光大银行"><img src="/static/image/bank/ceb.png" alt="中国光大银行"></div>
+                                <div class="item" id="bank9" onclick="confirmPay(9)" data-bankname="中信银行"><img src="/static/image/bank/citic.png" alt="中信银行"></div>
+                                <div class="item" id="bank10" onclick="confirmPay(10)" data-bankname="浦发银行"><img src="/static/image/bank/spdb.png" alt="浦发银行"></div>
+                                <div class="item" id="bank12" onclick="confirmPay(12)" data-bankname="兴业银行"><img src="/static/image/bank/cib.png" alt="兴业银行"></div>
+                                <div class="item" id="bank13" onclick="confirmPay(13)" data-bankname="平安银行"><img src="/static/image/bank/spabank.png" alt="平安银行"></div>
+                                {#<div class="item" id="bank14" onclick="confirmPay(14)" data-bankname="广发银行"><img src="/static/image/bank/gdb.png" alt="广发银行"></div>#}
+                                <div class="item" id="bank15" onclick="confirmPay(15)" data-bankname="上海农商行"><img src="/static/image/bank/shrcb.png" alt="上海农商行"></div>
+                                <div class="item" id="bank16" onclick="confirmPay(16)" data-bankname="上海银行"><img src="/static/image/bank/shbank.png" alt="上海银行"></div>
+                                <div class="item" id="bank17" onclick="confirmPay(17)" data-bankname="宁波银行"><img src="/static/image/bank/nbbank.png" alt="宁波银行"></div>
+                                <div class="item" id="bank18" onclick="confirmPay(18)" data-bankname="杭州银行"><img src="/static/image/bank/hzcb.png" alt="杭州银行"></div>
+                                <div class="item" id="bank19" onclick="confirmPay(19)" data-bankname="北京银行"><img src="/static/image/bank/bjbank.png" alt="北京银行"></div>
+                                <div class="item" id="bank20" onclick="confirmPay(20)" data-bankname="北京农商银行"><img src="/static/image/bank/bjrcb.png" alt="北京农商银行"></div>
+                                <div class="item" id="bank21" onclick="confirmPay(21)" data-bankname="富滇银行"><img src="/static/image/bank/fdb.png" alt="富滇银行"></div>
+                                <div class="item" id="bank22" onclick="confirmPay(22)" data-bankname="温州银行"><img src="/static/image/bank/wzcb.png" alt="温州银行"></div>
+                                <div class="item" id="bank23" onclick="confirmPay(23)" data-bankname="成都银行"><img src="/static/image/bank/cdcb.png" alt="成都银行"></div>
+                                <div class="item" id="bank24" onclick="confirmPay(24)" data-bankname="常熟农商银行"><img src="/static/image/bank/csrcb.png" alt="常熟农商银行"></div>
+                                <div class="item" id="bank25" onclick="confirmPay(25)" data-bankname="华夏银行"><img src="/static/image/bank/hxbank.png" alt="华夏银行"></div>
+                                <div class="item" id="bank26" onclick="confirmPay(26)" data-bankname="南京银行"><img src="/static/image/bank/njcb.png" alt="南京银行"></div>
+                                <div class="item" id="bank27" onclick="confirmPay(27)" data-bankname="苏州农村商业银行"><img src="/static/image/bank/wjrcb.png" alt="苏州农村商业银行"></div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item " id="btnJSJDiv" style="display: none;">
+                            <div class="layui-input-block">
+                                <button type="button" lay-submit="" lay-filter="btnJSJ" class="layui-btn">下单充值</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="payContent" style="display: none;">
+    <div class="layui-table-body myTable">
+        <table class="layui-table">
+            <colgroup>
+                <col width="125">
+                <col width="125">
+                <col width="200">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>单笔限额</th>
+                <th>每日限额</th>
+                <th>需要满足条件</th>
+            </tr>
+            </thead>
+            <tbody id="infoTable">
+
+            </tbody>
+        </table>
+        <div id="tipDiv"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/static/plugin/jquery.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/layer/layui.js?ver={{ globalJsVer }}"></script>
+<script>
+    layui.use(['form', 'layedit'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit;
+    });
+    function confirmPay(bankid) {
+        var bankName = $("#bank" + bankid).data("bankname");
+        var order_no = "{{ orderData.platformOrderNo }}";
+        console.log(bankid);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/getAlipayEbankLimit?c=bankMemoList",
+            data: {bankId: bankid},
+            success: function (data) {
+                if (data.code == 200) {
+                    var memo_data = data.data;
+                    if (memo_data != null && memo_data != "") {
+                        //弹窗数据绑定
+                        $.each(memo_data, function () {
+                            var strTable = '<tr><td> ' + this.singleQuota + ' </td> ' +
+                                '<td> ' + this.dailyQuota + ' </td> ' +
+                                '<td>' + this.memo + '</td></tr>';
+                            $('#infoTable').append(strTable);
+                        })
+                    } else {
+                        $('#tipDiv').html('<div class="layui-none">暂无数据</div>');
+                    }
+                } else {
+                    $('#tipDiv').html('<div class="layui-none">暂无数据</div>');
+                }
+                layer.open({
+                    type: 1,
+                    title: [bankName, 'font-size:18px;'],
+                    content: $('#payContent'),
+                    btn: ['立即支付', '取消'],
+                    yes: function (index, layero) { //立即支付按钮
+                        $.ajax({
+                            type: 'post',
+                            url: '/comfirmRechargeOrder',
+                            data: {order_no: order_no, bank_id: bankid},
+                            success: function (res) {
+                                if (res.code == 200) {
+                                    var data = res.data;
+                                    if (isPC()) {
+                                        window.open(decodeURIComponent(data));
+                                    } else {
+                                        window.location = decodeURIComponent(data);
+                                    }
+                                }
+                            }
+                        });
+                        //$('input[name="bankRadio"]').attr("checked", false);
+                        //form.render('radio');
+                        layer.close(index);
+                    },
+                    //btn2: function (index, layero) { //取消按钮
+                    //    $('input[name="bankRadio"]').attr("checked", false);
+                    //    form.render('radio');
+                    //    layer.close(index);
+                    //},
+                    //cancel: function () { //右上角关闭回调
+                    //    $('input[name="bankRadio"]').attr("checked", false);
+                    //    form.render('radio');
+                    //}
+                });
+            },
+            error: function (data) {
+                alert("error:" + data.responseText);
+            }
+        });
+    }
+    function isPC() {
+        var userAgentInfo = navigator.userAgent;
+        var Agents = ["Android", "iPhone",
+            "SymbianOS", "Windows Phone",
+            "iPad", "iPod"
+        ];
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
+    //订单监控  {订单监控}
+    function order() {
+        var order_num = "{{ orderData.platformOrderNo }}";
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/pay/api.php?c=get",
+            data: {"num": order_num},
+            cache: false,
+            success: function (data) {
+                if (data.code == '200') {
+                    window.clearInterval(orderlst);
+                    layer.confirm(data.msg, {
+                        icon: 1,
+                        title: '支付成功',
+                        btn: ['我知道了'] //按钮
+                    }, function () {
+                        location.href = "/index.php?a=servlet&b=index&c=Refer&num=" + order_num;
+                    });
+                }
+                //订单被销毁
+                else if (data.code == '1001') {
+                    window.clearInterval(orderlst);
+                    layer.confirm(data.msg, {
+                        icon: 2,
+                        title: '订单错误',
+                        btn: ['确认'] //按钮
+                    }, function () {
+                        location.href = "/index.php?a=servlet&b=index&c=Refer&num=" + order_num;
+                    });
+                }
+                //订单已经超时
+                else if (data.code == '1002') {
+                    window.clearInterval(orderlst);
+                    layer.confirm(data.msg, {
+                        icon: 2,
+                        title: '支付超时',
+                        btn: ['确认'] //按钮
+                    }, function () {
+                        location.href = "/index.php?a=servlet&b=index&c=Refer&num=" + order_num;
+                    });
+                }
+            },
+            error: function (data) {
+                alert("error:" + data.responseText);
+            }
+        });
+    }
+    // var orderlst = setInterval("order()", 2000);
+</script>
+
+
+<style id="LAY_layadmin_theme">.layui-side-menu,.layadmin-pagetabs .layui-tab-title li:after,.layadmin-pagetabs .layui-tab-title li.layui-this:after,.layui-layer-admin .layui-layer-title,.layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child{background-color:undefined !important;}.layui-nav-tree .layui-this,.layui-nav-tree .layui-this>a,.layui-nav-tree .layui-nav-child dd.layui-this,.layui-nav-tree .layui-nav-child dd.layui-this a{background-color:undefined !important;}.layui-layout-admin .layui-logo{background-color:undefined !important;}.layui-layout-admin .layui-header{background-color:#393D49;}.layui-layout-admin .layui-header a,.layui-layout-admin .layui-header a cite{color: #f8f8f8;}.layui-layout-admin .layui-header a:hover{color: #fff;}.layui-layout-admin .layui-header .layui-nav .layui-nav-more{border-top-color: #fbfbfb;}.layui-layout-admin .layui-header .layui-nav .layui-nav-mored{border-color: transparent; border-bottom-color: #fbfbfb;}.layui-layout-admin .layui-header .layui-nav .layui-this:after, .layui-layout-admin .layui-header .layui-nav-bar{background-color: #fff; background-color: rgba(255,255,255,.5);}.layadmin-pagetabs .layui-tab-title li:after{display: none;}</style>
+
+<div class="layui-layer-move"></div></body></html>

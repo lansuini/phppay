@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>支付订单</title>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/bootstrap.min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/core.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/icons.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/components.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/menu.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-table/min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-datetimepicker/min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/css/common.css?ver={{ globalJsVer }}" />
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.app.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.slimscroll.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/bootstrap.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/detect.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/fastclick.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/wow.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-table/min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-table/zh-CN.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/zh-CN.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/sweetalert2.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/js/common.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.2.1/echarts.min.js"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+        var contextPath = "/";
+        var apiPath = "/api/";
+	</script>
+	<link rel="stylesheet" type="text/css" href="/static/css/agent.css?ver={{ globalJsVer }}" />
+
+</head>
+
+<body class="fixed-left">
+	<div id="wrapper">
+		{{ include('./agent/topbar.twig') }}
+		{{ include('./menu.twig', {menus: menus}) }}
+		<div class="row" id="divContainer">
+						<div class="content-page">
+							<div class="content">
+								<div class="container">
+									<div class="row v-breadcrumb">
+										<ol class="pull-left breadcrumb">
+											<li>代理后台</li>
+											<li class="active" data-nav="index">首页</li>
+										</ol>
+									</div>
+									<!-- 开始 -->
+									<div class="row " id="divContainer">
+										<div class="row user-info">
+											<div class="user-head"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUayHqdRk73EH09MYLO__RRb_YK8wn6SfPNkFyolvyiceYiPxD" alt="" srcset=""></div>
+											<div class="info">
+												<p>
+													<span>代理账号：</span>
+													{{ userName }}
+													<span id="bankCard" style="cursor: pointer;" class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+												</p>
+												<p>
+													<span>上次登录时间：</span>
+													{{ user.loginDate }}
+												</p>
+												<p>
+													<span>上次登录IP：</span>
+                                                    {{ user.loginIP }}&nbsp;&nbsp;&nbsp;&nbsp;{{ user.loginIPDesc }}
+												</p>
+											</div>
+										</div>
+										<div class="row list">
+											<div class="col-md-3">
+												<h3>余额</h3>
+												<p>{{ user.balance + user.freezeBalance }}元</p>
+											</div>
+											<div class="col-md-2">
+												<h3>可提余额</h3>
+												<p>{{ user.balance }}元</p>
+												<button id="withdrawBtn" class="btn btn-default" type="submit">提现</button>
+												<button id="withdrawList" class="btn btn-default" type="submit">提现订单</button>
+											</div>
+											<div class="col-md-3">
+												<h3>未结算金额</h3>
+												<p>{{ user.unsettledAmount }}元</p>
+												<button id="unsettledAmount" class="btn btn-default" type="submit">列表</button>
+											</div>
+											<div class="col-md-2">
+												<h3>冻结资金</h3>
+												<p>{{ user.freezeBalance }}元</p>
+											</div>
+											<div class="col-md-2">
+												<h3>保证金</h3>
+												<p>{{ user.bailBalance }}元</p>
+											</div>
+										</div>
+										<div class="row list">
+											<div class="col-md-2">
+												<h3>返佣机制</h3>
+												<p>{{ user.settleAccWay }}</p>
+											</div>
+											<div class="col-md-2">
+												<h3>返佣提现百分比</h3>
+												<p>{{ user.settleAccRatio }}%</p>
+											</div>
+											<div class="col-md-4">
+												<h3>上次返佣</h3>
+												<p>{{ user.lastFees }}元<span class="time-mark">({{ user.lastFeesDate }})</span></p>
+											</div>
+											<div class="col-md-2">
+												<h3>总返佣</h3>
+												<p>{{ user.totalFees }}元</p>
+											</div>
+											<div class="col-md-2">
+												<h3>已提佣金</h3>
+												<p>{{ user.totalWithdraw }}元</p>
+											</div>
+										</div>
+										<div class="row">
+											<div id="myCharts" class="flow-charts" style="width: 900px;height:400px;"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+				    </div>
+		<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"></h4>
+					</div>
+
+					<div class="modal-body v-modal-row">
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="bankCode">选择银行：</label>
+							<select class="form-control" id="bankCode" data-field="bankCode" placeholder="请选择银行卡"></select>
+						</div>
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="accountNo">银行帐户：</label>
+							<input type="hidden" class="form-control" id="cardId" data-field="cardId" value="" />
+							<input type="text" class="form-control" id="accountNo" data-field="accountNo" placeholder="请输入银行卡下面的卡号数字" />
+						</div>
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="accountName">账户姓名：</label>
+							<input type="text" class="form-control" id="accountName" data-field="accountName" placeholder="请输入持卡人真实姓名" />
+						</div>
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="province">开户所在省：</label>
+							<input type="text" class="form-control" id="province" data-field="province" placeholder="请输入开户所在省" />
+						</div>
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="city">开户所在市：</label>
+							<input type="text" class="form-control" id="city" data-field="city" placeholder="请输入开户所在市" />
+						</div>
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="district">开户所在区：</label>
+							<input type="text" class="form-control" id="district" data-field="district" placeholder="请输入开户所在区" />
+						</div>
+
+						<div class="modal-footer">
+							<input type="button" class="btn btn-default" value="关闭" data-dismiss="modal" />
+							<input type="button" class="btn btn-primary" value="提交" id="btnSubmit" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" style="width: 886px">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"></h4>
+					</div>
+					<div id="addDivButton" style="width: 100%;text-align: right;margin-top: 8px;margin-bottom: -8px;">
+						<button type="button" class="btn btn-default" id="btnAdd" style="border-radius: 8px;">
+							<span class="md-add" aria-hidden="true"></span> 新增
+						</button>
+					</div>
+					<div class="modal-body v-modal-row">
+						<div class="row">
+							<table id="tabMain"></table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="listWithDrawModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" style="width: 886px">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body v-modal-row">
+						<div class="row">
+							<table id="tabWithDrawMain"></table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="listUnsettledAmount" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" style="width: 886px">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body v-modal-row">
+						<div class="row">
+							<table id="tabUnsettledAmount"></table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"></h4>
+					</div>
+
+					<div class="modal-body v-modal-row">
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="bankCode">收款银行账号：</label>
+							<select class="form-control" id="withdrawBankId" data-field="withdrawBankId" placeholder="选择收款银行信息"></select>
+						</div>
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="accountName">提款金额：</label>
+							<input type="text" class="form-control" id="withdrawMoney" data-field="withdrawMoney" placeholder="提款金额" />
+						</div>
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="withdrawPwd">提现密码：</label>
+							<input type="text" class="form-control" id="withdrawPwd" data-field="withdrawPwd" placeholder="提现密码" />
+						</div>
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="accountName">提款说明：</label>
+							<input type="text" class="form-control" id="withdrawDesc" data-field="withdrawDesc" placeholder="提款说明" />
+						</div>
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="accountName">提款手续费：</label>
+							<input type="text" disabled class="form-control" id="withdrawFee" data-field="withdrawFee" placeholder="提款手续费" />
+						</div>
+						<div class="modal-footer">
+							<input type="button" class="btn btn-default" value="关闭" data-dismiss="modal" />
+							<input type="button" class="btn btn-primary" value="提交" id="btnWithdrawSubmit" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/static/js/agent/index.js?ver={{ globalJsVer }}"></script>
+</body>
+</html>
+

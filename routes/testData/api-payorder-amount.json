@@ -1,0 +1,107 @@
+{
+    "success": 1,
+    "result": {},
+    "total": 80,
+    "rows": [
+        {
+            "accountDate": 20190302,
+            "merchantNo": "70000020",
+            "orderAmount": 7962
+        },
+        {
+            "accountDate": 20190301,
+            "merchantNo": "70000023",
+            "orderAmount": 210
+        },
+        {
+            "accountDate": 20190301,
+            "merchantNo": "70000001",
+            "orderAmount": 4120
+        },
+        {
+            "accountDate": 20190228,
+            "merchantNo": "70000023",
+            "orderAmount": 220
+        },
+        {
+            "accountDate": 20190228,
+            "merchantNo": "70000001",
+            "orderAmount": 29
+        },
+        {
+            "accountDate": 20190227,
+            "merchantNo": "70000023",
+            "orderAmount": 195.26
+        },
+        {
+            "accountDate": 20190227,
+            "merchantNo": "70000001",
+            "orderAmount": 11
+        },
+        {
+            "accountDate": 20190226,
+            "merchantNo": "70000023",
+            "orderAmount": 20
+        },
+        {
+            "accountDate": 20190226,
+            "merchantNo": "70000020",
+            "orderAmount": 20
+        },
+        {
+            "accountDate": 20190222,
+            "merchantNo": "70000020",
+            "orderAmount": 2400
+        },
+        {
+            "accountDate": 20190221,
+            "merchantNo": "70000020",
+            "orderAmount": 26620
+        },
+        {
+            "accountDate": 20190221,
+            "merchantNo": "70000001",
+            "orderAmount": 15
+        },
+        {
+            "accountDate": 20190220,
+            "merchantNo": "70000020",
+            "orderAmount": 30780
+        },
+        {
+            "accountDate": 20190219,
+            "merchantNo": "70000020",
+            "orderAmount": 49571
+        },
+        {
+            "accountDate": 20190218,
+            "merchantNo": "70000020",
+            "orderAmount": 8862
+        },
+        {
+            "accountDate": 20190130,
+            "merchantNo": "70000019",
+            "orderAmount": 70443
+        },
+        {
+            "accountDate": 20190130,
+            "merchantNo": "70000014",
+            "orderAmount": 53360
+        },
+        {
+            "accountDate": 20190130,
+            "merchantNo": "70000001",
+            "orderAmount": 21
+        },
+        {
+            "accountDate": 20190129,
+            "merchantNo": "70000014",
+            "orderAmount": 40961
+        },
+        {
+            "accountDate": 20190128,
+            "merchantNo": "70000014",
+            "orderAmount": 7732
+        }
+    ]
+}

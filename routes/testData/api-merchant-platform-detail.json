@@ -1,0 +1,23 @@
+{
+    "success": 1,
+    "result": {
+        "backNoticeMaxNum": 10,
+        "description": "云彩厅",
+        "domains": [
+            "https://b.huitongpay.net"
+        ],
+        "icp": "",
+        "insTime": null,
+        "openBackNotice": true,
+        "openCheckAccount": false,
+        "openCheckDomain": true,
+        "openFrontNotice": true,
+        "platformId": "93d28dfca22b4e529bc6500824cc2942",
+        "platformNo": "70000025",
+        "signKey": "682cb2d6f91048a89f31af0a0e9ec7e7",
+        "status": "Normal",
+        "statusDesc": "正常",
+        "type": "Normal",
+        "typeDesc": "一般"
+    }
+}

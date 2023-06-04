@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>首页</title>
+	
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/bootstrap.min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/core.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/icons.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/components.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/menu.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-table/min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-datetimepicker/min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/css/common.css?ver={{ globalJsVer }}" />
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.app.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.slimscroll.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/bootstrap.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/detect.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/fastclick.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/wow.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-table/min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-table/zh-CN.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/zh-CN.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/sweetalert2.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/js/common.js?ver={{ globalJsVer }}"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+	var contextPath = "/";
+	var apiPath = "/api/";
+</script>
+<script type="text/javascript" src="/static/js/index.js?ver={{ globalJsVer }}"></script>
+    <style type="text/css">
+        .form-group{margin:0 0 7px 0}
+
+		#divNotice dt{
+			text-align: left;
+			!important
+		}
+
+		.dl-horizontal dd {
+			line-height: 200%;
+		}
+		.dl-horizontal dt{
+			line-height: 200%;
+			width: 70%;
+			margin-right: 15px;
+		}
+
+		#divNotice{
+			width:50%;
+			margin-top: 80px;
+			margin-left: 30px;
+			border:1px solid #999999;
+		}
+
+    </style>
+</head>
+
+<body class="fixed-left">
+	<div id="wrapper">
+		
+
+<div class="topbar">
+	<div class="topbar-left">
+		<div class="text-center">
+			<a class="logo"><span>管理后台</span></a>
+		</div>
+	</div>
+
+	<div class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="">
+				<ul class="nav navbar-nav navbar-right pull-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="true">
+							<i class="ion-person"></i>{{ userName }}<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="javascript:common.logout();"><i class="ion-power"></i> 退出</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{ include('./gm/menu.twig', {menus: menus}) }}
+
+		<div class="content-page">
+			<div class="content">
+				<div class="container" >
+					<div class="row v-breadcrumb">
+						<ol class="pull-left breadcrumb">
+							<li>管理后台</li>
+							<li class="active" data-nav="index">首页</li>
+						</ol>
+					</div>
+					<div>
+						<h1>欢迎来到管理后台哟</h1>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

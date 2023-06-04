@@ -1,0 +1,76 @@
+.layui-layout-body {
+	overflow: auto;
+}
+
+.layui-table-body.myTable {
+	margin: 10px 15px 0px 15px;
+}
+
+.myTable .layui-table {
+	margin: 0px;
+}
+
+.myTable .layui-none {
+	border: 1px solid #f2f2f2;
+	border-top: none;
+}
+
+.myb-bank-flex {
+	display: flex;
+	justify-content: flex-start;
+	-webkit-justify-content: flex-start;
+	align-content: flex-start;
+	-webkit-align-content: flex-start;
+	align-items: center;
+	-webkit-align-content: center;
+	flex-wrap: wrap;
+}
+
+.myb-bank-flex .item {
+	height: 36px;
+	width: 190px;
+	display: flex;
+	justify-content: flex-start;
+	-webkit-justify-content: flex-start;
+	align-content: flex-start;
+	-webkit-align-content: flex-start;
+	align-items: center;
+	-webkit-align-content: center;
+	padding: 12px 0px;
+	/* border: 2px solid #0d7bff; */
+	border: 2px solid #EEEEEE;
+	border-radius: 2px;
+	text-align: center;
+	margin: 0px 20px 25px 0px;
+	box-shadow: 0px 0px 5px #e6e6e6;
+	cursor: pointer;
+
+}
+
+.myb-bank-flex .item:hover{
+	border: 2px solid #0d7bff;
+}
+
+.myb-bank-flex .item .info {
+	cursor: pointer;
+}
+
+.myb-bank-flex .item img {
+	height: 36px;
+	font-size: 0px;
+	vertical-align: middle;
+	margin: auto;
+}
+
+.myb-bank-flex .item span {
+	display: inline-block;
+	width: 100%;
+	font-size: 16px;
+	vertical-align: middle;
+	color: black;
+}
+
+.myb-bank-flex .layui-form-radio {
+	padding-right: 0px;
+	margin: 0px;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>扫码支付</title>
+        <style>
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+            #ios {
+                border: 1px solid #ddd;
+                padding: 5px;
+                border-radius: 5px;
+                box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);
+            }
+            #ios p {
+                text-align: center;
+            }
+            #payType {
+                color: #f00f00;
+                font-weight: 600;
+            }
+            .qrcode{
+                height: 256px;;
+            }
+        </style>
+    </head>
+
+    <body>
+        <input type="hidden" id="inputQrcodeUrl" value="{{ qrcode }}" />
+        <input type="hidden" id="inputQrcodeType" value="{{ type }}" />
+        <div id="ios">
+            <div id="qrcode" class="qrcode" title="请扫码">
+                <canvas width="256" height="256" style="display: none;">
+                </canvas>
+                <img alt="请扫码" src="" style="display: block;">
+            </div>
+            <p class="tips" style="display: none;">请使用<span id="payType">---</span>扫码支付</p>
+        </div>
+
+        <script src="/static/js/qrcode/qrcode.min.js?ver={{ globalJsVer }}"></script>
+        <script type="text/javascript">
+            let url = document.getElementById("inputQrcodeUrl").val();
+            let type = document.getElementById("inputQrcodeType").val();
+
+            var txt = '';
+            switch (type) {
+                case "alipay":
+                txt = "支付宝"
+                break
+                case "wx":
+                txt = "微信"
+                break
+                case "yunpay":
+                txt = "云闪付APP"
+                break
+                case "unionpay":
+                txt = "银联"
+                break
+                default:
+                txt = "---"
+            }
+            // type = wx 提示请用微信扫描二维码，type=alipay 提示请用支付宝扫描二维码，type=ysf 提示请用云闪付APP扫描二维码
+            document.getElementById("payType").innerText = txt;
+            //console.log(url, txt)
+            
+            if (!type) {
+                document.querySelector(".tips").style.display = "none";
+            } else {
+                document.querySelector(".tips").style.display = "";
+            }
+
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: url,
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "transparent",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        </script>
+    </body>
+</html>

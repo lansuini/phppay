@@ -1,0 +1,61 @@
+{
+    "success": 1,
+    "result": {
+        "commonStatus": [
+            {
+                "key": "Normal",
+                "value": "正常"
+            },
+            {
+                "key": "Close",
+                "value": "关闭"
+            }
+        ],
+        "switchType": [
+            {
+                "key": "1",
+                "value": "启用"
+            },
+            {
+                "key": "0",
+                "value": "关闭"
+            }
+        ],
+        "agentType": [
+            {
+                "key": "D0",
+                "value": "D0结算"
+            },
+            {
+                "key": "D1",
+                "value": "D1结算"
+            },
+            {
+                "key": "D7",
+                "value": "D7结算"
+            },
+            {
+                "key": "D30",
+                "value": "D30结算"
+            }
+        ],
+        "withdrawOrderType": [
+            {
+                "key": "Apply",
+                "value": "申请中"
+            },
+            {
+                "key": "Adopt",
+                "value": "通过"
+            },
+            {
+                "key": "Refute",
+                "value": "拒绝"
+            },
+            {
+                "key": "Complete",
+                "value": "成功打款/完成"
+            }
+        ]
+    }
+}

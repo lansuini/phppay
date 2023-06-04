@@ -1,0 +1,1 @@
+$(function(){$("#btnSubmit").click(submit)});function submit(){if($("#txtLoginName").val()==""){myAlert.warning($("#txtLoginName").attr("placeholder"));return}myConfirm.show({title:"确定修改？",sure_callback:function(){common.submit(apiPath+"manager/changeloginname","divContainer",function(){location.href=location.href})}})};

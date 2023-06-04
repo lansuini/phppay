@@ -1,0 +1,31 @@
+{
+    "success": 1,
+    "result": {
+        "bankCode": [
+            {
+                "key": "ICBC",
+                "value": "中国工商银行"
+            },
+            {
+                "key": "CEB",
+                "value": "中国光大银行"
+            },
+            {
+                "key": "CCB",
+                "value": "中国建设银行"
+            },
+            {
+                "key": "SPDB",
+                "value": "浦发银行"
+            },
+            {
+                "key": "BOC",
+                "value": "中国银行"
+            },
+            {
+                "key": "CMBC",
+                "value": "中国民生银行"
+            }
+        ]
+    }
+}

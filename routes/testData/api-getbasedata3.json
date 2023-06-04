@@ -1,0 +1,25 @@
+{
+    "success": 1,
+    "result": {
+        "bankrollType": [
+            {
+                "key": "AccountBalance",
+                "value": "账户资金"
+            },
+            {
+                "key": "ServiceCharge",
+                "value": "手续费"
+            }
+        ],
+        "bankrollDirection": [
+            {
+                "key": "Restore",
+                "value": "返还"
+            },
+            {
+                "key": "Retrieve",
+                "value": "追收"
+            }
+        ]
+    }
+}

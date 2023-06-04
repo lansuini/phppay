@@ -1,0 +1,85 @@
+{
+    "success": 1,
+    "result": {
+        "productType": [
+            {
+                "key": "Pay",
+                "value": "支付"
+            },
+            {
+                "key": "Settlement",
+                "value": "结算"
+            }
+        ],
+        "rateType": [
+            {
+                "key": "Rate",
+                "value": "按比例收取"
+            },
+            {
+                "key": "FixedValue",
+                "value": "按固定值收取"
+            }
+        ],
+        "payType": [
+            {
+                "key": "EBank",
+                "value": "网银"
+            },
+            {
+                "key": "Quick",
+                "value": "快捷"
+            },
+            {
+                "key": "OfflineWechatQR",
+                "value": "线下微信扫码"
+            },
+            {
+                "key": "OfflineAlipayQR",
+                "value": "线下支付宝扫码"
+            },
+            {
+                "key": "OnlineWechatQR",
+                "value": "线上微信扫码"
+            },
+            {
+                "key": "OnlineAlipayQR",
+                "value": "线上支付宝扫码"
+            },
+            {
+                "key": "OnlineWechatH5",
+                "value": "线上微信H5"
+            },
+            {
+                "key": "OnlineAlipayH5",
+                "value": "线上支付宝H5"
+            },
+            {
+                "key": "UnionPayQR",
+                "value": "银联扫码"
+            },
+            {
+                "key": "EntrustSettlement",
+                "value": "委托代付"
+            },
+            {
+                "key": "AdvanceSettlement",
+                "value": "垫资结算"
+            },
+            {
+                "key": "HolidaySettlement",
+                "value": "节假日结算"
+            }
+        ],
+        "commonStatus": [
+            {
+                "key": "Normal",
+                "value": "正常"
+            },
+            {
+                "key": "Close",
+                "value": "关闭"
+            }
+        ]
+    }
+}

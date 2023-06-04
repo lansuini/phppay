@@ -1,0 +1,36 @@
+{
+    "success": 1,
+    "result": {
+        "channel": "JLCP510",
+        "delegateDomain": "",
+        "holidaySettlementMaxAmount": 2000000,
+        "holidaySettlementRate": 1,
+        "holidaySettlementType": "OverplusD1Settlement",
+        "insTime": {
+            "date": 24,
+            "day": 0,
+            "hours": 16,
+            "minutes": 35,
+            "month": 2,
+            "seconds": 28,
+            "time": 1553416528000,
+            "timezoneOffset": -480,
+            "year": 119
+        },
+        "merchantId": "2d171e5190714d40a4a4ab8b36b631ac",
+        "merchantNo": "180778823",
+        "oneSettlementMaxAmount": 200000,
+        "openEntrustSettlement": true,
+        "openHolidaySettlement": true,
+        "openPay": true,
+        "openQuery": true,
+        "openSettlement": true,
+        "openWorkdaySettlement": true,
+        "param": "{\"signKey\":\"9j2f2n274tqp4xhk9q27i97kz259u78k\"}",
+        "settlementTime": 0,
+        "status": "Normal",
+        "workdaySettlementMaxAmount": 2000000,
+        "workdaySettlementRate": 1,
+        "workdaySettlementType": "OverplusD1Settlement"
+    }
+}

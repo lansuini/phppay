@@ -1,0 +1,38 @@
+{
+    "success": 1,
+    "result": {
+        "fullName": "云彩厅",
+        "holidaySettlementMaxAmount": 5000000,
+        "holidaySettlementRate": 1,
+        "holidaySettlementType": "OverplusD1Settlement",
+        "insTime": {
+            "date": 27,
+            "day": 3,
+            "hours": 15,
+            "minutes": 44,
+            "month": 1,
+            "seconds": 50,
+            "time": 1551253490000,
+            "timezoneOffset": -480,
+            "year": 119
+        },
+        "merchantId": "6bebf67db2b94b70871ffb9efaf1532a",
+        "merchantNo": "70000025",
+        "oneSettlementMaxAmount": 5000000,
+        "openEntrustSettlement": true,
+        "openHolidaySettlement": true,
+        "openPay": true,
+        "openQuery": true,
+        "openSettlement": true,
+        "openWorkdaySettlement": true,
+        "platformId": "93d28dfca22b4e529bc6500824cc2942",
+        "platformNo": "70000025",
+        "settlementTime": 0,
+        "shortName": "云彩厅",
+        "status": "Normal",
+        "statusDesc": "正常",
+        "workdaySettlementMaxAmount": 500000,
+        "workdaySettlementRate": 1,
+        "workdaySettlementType": "OverplusD1Settlement"
+    }
+}

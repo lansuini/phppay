@@ -1,0 +1,35 @@
+{
+    "success": 1,
+    "result": {
+        "platformType": [
+            {
+                "key": "Normal",
+                "value": "一般"
+            },
+            {
+                "key": "Proxy",
+                "value": "代理"
+            }
+        ],
+        "commonStatus": [
+            {
+                "key": "Normal",
+                "value": "正常"
+            },
+            {
+                "key": "Close",
+                "value": "关闭"
+            }
+        ],
+        "openType": [
+            {
+                "key": "1",
+                "value": "开通"
+            },
+            {
+                "key": "0",
+                "value": "关闭"
+            }
+        ]
+    }
+}

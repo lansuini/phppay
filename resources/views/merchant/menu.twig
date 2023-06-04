@@ -1,0 +1,51 @@
+<style>
+	#tip{line-height:32px;background:#f6f0f3;border-bottom:1px solid #e0e0e0;font-size:14px;padding:0 0 0 10px;}
+	#tip div.tip-title{color:#666;font-weight:bolder;}
+	#tip div.tip-cont{font-size:13px;color:#0000ff;text-indent:2em;}
+	#tip div.tip-cont span{color:#ff0000;}
+</style>
+<div class="left side-menu">
+	<div class="sidebar-inner slimscrollleft">
+		<div id="sidebar-menu">
+			<ul>
+            {% for menu in menus %}
+                {% if menu.u %}
+                <li>
+					<a href="{{ menu.u }}" class="waves-effect waves-light" data-nav="{{ menu.u[1:]|replace({'/': '-'}) }}">
+						<i class="md md-view-list"></i><span>{{ menu.n }}</span>
+					</a>
+				</li>
+                {% else %}
+                <li class="has_sub">
+					<a href="#" class="waves-effect waves-light"><i class="md md-view-list"></i><span>{{ menu.n }}</span><span class="pull-right"><i class="md md-add"></i></span></a>
+					<ul class="list-unstyled">
+                    {% for submenu in menu.c %}
+						<li><a href="{{ submenu.u }}" data-nav="{{ submenu.u[1:]|replace({'/': '-'}) }}">{{ submenu.n }}</a></li>
+					{% endfor %}
+                    </ul>
+				</li>
+                {% endif %}
+            {% endfor %}
+
+			</ul>
+			<div class="clearfix"></div>
+			<div id="tip">
+				<div class="tip-title" id="tip-title"></div>
+				<div class="tip-cont" id="tip-log"></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<script>
+    $(function() {
+        if(window.location.host.slice(0, 8) == 'merchant'){
+            common.getAjax("/api/index/tips", function(a) {
+                if(a.success == 0){
+                    $("#tip-title").html("温馨提示：");
+                    $("#tip-log").html("为了您的资金安全，请绑定<span>谷歌验证器</span>，请定期修改登录和支付密码，最近登录密码修改时间：<span>" + a.loginpwd_log + "</span>，最近支付密码修改时间：<span>" + a.paypwd_log + "</span>");
+                }
+            });
+        }
+    });
+</script>

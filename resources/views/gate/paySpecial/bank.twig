@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>认证支付页面</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,
+		body{
+			font-size: 0.3rem;
+		}
+		body{
+			margin-top: 1rem;
+		}
+		h1{
+			font-size: 0.5rem;
+			text-align: center;
+			margin-bottom: 0.5rem;
+			color: #666;
+		}
+		h3{
+			font-size: 0.3rem;
+			text-align: center;
+			margin-bottom: 0.2rem;
+			color: #c7254e;
+		}
+		h5{
+			text-align: center;
+			margin-bottom: 0.2rem;
+			color: #9d9d9d;
+		}
+		#myform{
+			padding: 0 0.5rem;
+			text-align: center;
+		}
+		#myform .item{
+			padding-bottom: 0.5rem;
+			display: flex;
+			text-align: left;
+			position: relative;
+		}
+		#myform .item > input{
+			height: 0.44rem;
+			padding-left: 0.2rem;
+		}
+		#myform .item > i{
+			display: none;
+			position: absolute;
+			left: 1.6rem;
+			top: 0.58rem;
+			font-size: 0.25rem;
+			color: #f56c6c;
+		}
+		#myform .item > span{
+			width: 1.5rem;
+			color: #333;
+		}
+		.code{
+			width: 1.5rem;
+			height: 0.51rem;
+			line-height: 0.5rem;
+			background-color: #ccc;
+			color: #333;
+			border: #ccc 1px solid;
+		}
+		#myform .btn{
+			margin: 1rem auto 0;
+			width: 3rem;
+			height: 0.66rem;
+			border-radius: 0.1rem;
+			line-height: 0.66rem;
+			background-color: #67c23a;
+			color: #fff;
+			border: #67c23a 1px solid;
+		}
+		#mark{
+			display: none;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			overflow: hidden;
+			background: rgba(0,0,0,0.35);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.cont{
+			color: #fff;
+			text-align: center;
+		}
+		#closeBtn{
+			margin-top: 1rem;
+			display: inline-block;
+			width: 2rem;
+			height: 0.66rem;
+			border-radius: 0.1rem;
+			line-height: 0.66rem;
+			color: #fff;
+			border: #fff 1px solid;
+		}
+	</style>
+</head>
+<body>
+<h1>快捷认证支付</h1>
+<h3>支付金额： {{ data.order.realOrderAmount }}元</h3>
+<h5>请放心正确填写相关信息，银行直连扣款<h5/>
+<form action="" method="post" id="myform">
+	<div class="item">
+		<span>姓名：</span>
+		<input type ="text" name="name">
+		<i id="name">请输入姓名</i>
+	</div>
+	<div class="item">
+		<span>银行卡号：</span>
+		<input type ="text" name="bankCard">
+		<i id="bankCard">请输入银行卡号</i>
+	</div>
+	<div class="item">
+		<span>身份证号：</span>
+		<input type ="text" name="idCard">
+		<i id="idCard">请输入身份证号</i>
+	</div>
+	<div class="item">
+		<span>手机号：</span>
+		<input type ="text" name="mobileNo">
+		<button class="code" id="getCode">获取验证码</button>
+		<i id="mobileNo">请输入银行预留手机号</i>
+	</div>
+	<div class="item">
+		<span>验证码：</span>
+		<input type ="text" name="code">
+		<i id="code">请输入验证码</i>
+	</div>
+	<input type="submit" name="submit" value="提交" id="Submit" class="btn"/>
+</form>
+<div id="mark" style="display: none;" class="mark">
+	<div class="cont">
+		<p id="msg"></p>
+		<span id="closeBtn">关闭</span>
+	</div>
+</div>
+<script>
+    document.documentElement.style.fontSize = document.body.clientWidth / 7.5 + 'px';
+</script>
+<script src="//libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    var timeInterval = null;
+    var times = 60;
+    $('#mark').hide();
+    // 表单提交
+    $('form').submit(function(){
+        var btnStatus = true; // 是否可以提交
+        var vaildState = true; // 校验是否通过
+        var t = $('form').serializeArray();
+        $.each(t, function() {
+            $(`#${this.name}`).hide();
+            if(!this.value){
+                $(`#${this.name}`).show();
+                vaildState = false;
+            }
+        });
+        if(!vaildState) return false;
+        var queryStr = $('form').serialize();
+        if(!btnStatus) return;
+        btnStatus = false;
+        $.ajax({
+            url: '{{ data.submit }}?' + queryStr,
+        }).done(function(msg) {
+            btnStatus = true;
+            $('#mark').show();
+            if(msg.status != 1) {
+                $('#msg').text(msg.msg);
+            }else {
+                $('#msg').text('提交成功');
+                document.getElementById("myform").reset();
+            }
+        }).fail(function() {
+            btnStatus = true;
+            $('#mark').show();
+            $('#msg').text('提交失败');
+        });
+        return false;
+    });
+
+    // 获取验证码
+    $('#getCode').click(function(){
+        var vaildState = true; // 校验是否通过
+        var tt = $('form').serializeArray();
+
+        $.each(tt, function() {
+            $(`#${this.name}`).hide();
+            if(this.name != 'code'){
+                if(!this.value ){
+                    $(`#${this.name}`).show();
+                    vaildState = false;
+                }
+            }
+        });
+        if(!vaildState) return false;
+        if(timeInterval) return false;
+        var str = $('form').serialize();
+        $.ajax({
+            url: '{{ data.sendCode }}?' + str,
+        }).done(function(msg) {
+            // $('#getCode').val('已发送');
+			console.log(msg);
+			if(msg.status != 1) {
+                $('#mobileNo').html(msg.msg);
+                $('#mobileNo').show();
+			}else {
+                $('#mobileNo').hide();
+                timeInterval = setInterval(function(){
+                    times--;
+                    $('#getCode').html(`${times}秒`);
+                    if(times <= 0){
+                        clearInterval(timeInterval);
+                        timeInterval = null;
+                        $('#getCode').html(`获取验证码`);
+                    }
+                },1000);
+			}
+        }).fail(function() {
+            $('#getCode').html('发送失败');
+        });
+        return false;
+    })
+
+    $('#closeBtn').click(function(){
+        $('#mark').hide();
+        // document.getElementById("myform").reset();
+    })
+
+</script>
+</body>
+</html>

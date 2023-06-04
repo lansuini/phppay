@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>代付订单</title>
+	
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/bootstrap.min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/core.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/icons.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/components.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/menu.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-table/min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-datetimepicker/min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/css/common.css?ver={{ globalJsVer }}" />
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.app.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.slimscroll.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/bootstrap.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/detect.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/fastclick.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/wow.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-table/min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-table/zh-CN.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/zh-CN.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/sweetalert2.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/js/common.js?ver={{ globalJsVer }}"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+	var contextPath = "/";
+	var apiPath = "/api/";
+</script>
+    <script type="text/javascript" src="/static/js/settlementorder/makeupcheck.js?ver={{ globalJsVer }}"></script>
+</head>
+
+<body class="fixed-left">
+	<div id="wrapper">
+
+
+        {{ include('./gm/torbar.twig', {menus: menus}) }}
+
+{{ include('./gm/menu.twig', {menus: menus}) }}
+
+		<div class="content-page">
+			<div class="content">
+				<div class="container">
+					<div class="row v-breadcrumb">
+						<ol class="pull-left breadcrumb">
+							<li>管理后台</li>
+							<li class="active" data-nav="settlementorder">代付订单详情</li>
+						</ol>						
+					</div>
+
+					<form class="form-horizontal" role="form" id="editModal">
+						<div class="form-group clearfix sr-only">
+							<label class="col-lg-2 control-label" for="acctondId">id：</label>
+							<input type="text" class="form-control" id="id" data-field="id"/>
+						</div>
+				
+						<div class="form-group">
+							<label for="firstname" class="col-sm-2 control-label">平台订单号：</label>
+								<input type="text" class="form-control" id="platformOrderNo"  disabled="disabled" disabled="disabled"/>
+						</div>
+						<div class="form-group">
+							<label for="lastname" class="col-sm-2 control-label">交易金额：</label>
+								<input type="text" class="form-control" id="orderAmount" disabled="disabled" disabled="disabled"/>
+						</div>
+
+						<div class="form-group">
+							<label for="lastname" class="col-sm-2 control-label">支付渠道：</label>
+								<input type="text" class="form-control" id="channel" disabled="disabled" disabled="disabled"/>
+						</div>
+
+						<div class="form-group">
+							<label for="lastname" class="col-sm-2 control-label">上游商户号：</label>
+								<input type="text" class="form-control" id="channelMerchantNo" disabled="disabled" disabled="disabled"/>
+						</div>
+
+						<div class="form-group">
+							<label for="lastname" class="col-sm-2 control-label">上游订单号：</label>
+								<input type="text" class="form-control" id="channelOrderNo" data-field="channelOrderNo" disabled="disabled"/>
+								<input type="hidden" class="form-control" value="up" data-field="type" />
+						</div>
+
+						<div class="form-group">
+							<label for="lastname" class="col-sm-2 control-label">上游支付日期：</label>
+							<input type="text" class="form-control" id="channelNoticeTime" data-field="channelNoticeTime" disabled="disabled"/>
+						</div>
+
+						<div class="form-group">
+							<label for="lastname" class="col-sm-2 control-label">交易状态：</label>
+							<input type="text" class="form-control" id="selOrderStatus" disabled="disabled"/>
+						</div>
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="txtFailReason">失败原因：</label>
+							<input type="text" class="form-control" id="txtFailReason" data-field="failReason" placeholder="请输入失败原因" />
+						</div>	
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="commiter_id">提审人：</label>
+							<input type="text" class="form-control" id="commiter_id" data-field="commiter_id" disabled="disabled"/>
+						</div>
+
+						<div class="form-group">
+							<label for="lastname" class="col-sm-2 control-label">提审备注：</label>
+								<input type="text" class="form-control" id="commiter_desc" disabled="disabled"/>
+						</div>						
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="ip">提审核人ip：</label>
+							<input type="text" class="form-control" id="ip" disabled="disabled"/>
+						</div>				
+
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="created_at">提审时间：</label>
+							<input type="text" class="form-control" id="created_at" disabled="disabled"/>
+						</div>		
+						
+						<div class="form-group clearfix">
+							<label class="col-lg-2 control-label" for="created_at">截图：</label>
+							<img style="width:220px;height:170px" onmouseover="this.style.cursor='pointer';this.style.cursor='hand'" onmouseout="this.style.cursor='default'" src="" id="pic"/>
+						</div>
+
+						<div class="form-group clearfix admin_id">
+							<label class="col-lg-2 control-label" for="admin_id">审核人：</label>
+							<input type="text" class="form-control" id="admin_id" data-field="admin_id" disabled="disabled"/>
+						</div>
+
+						<div class="form-group clearfix check_time">
+							<label class="col-lg-2 control-label" for="check_time">审核时间：</label>
+							<input type="text" class="form-control" id="check_time" disabled="disabled"/>
+						</div>
+
+						<div class="form-group clearfix check_ip">
+							<label class="col-lg-2 control-label" for="check_ip">审核人ip：</label>
+							<input type="text" class="form-control" id="check_ip" disabled="disabled"/>
+						</div>								
+
+						<div class="form-group clearfix desc">
+							<label class="col-lg-2 control-label" for="desc">审核备注：</label>
+							<input type="text" class="form-control" id="desc" data-field="desc"/>
+						</div>
+
+						<div class="form-group clearfix desc">
+							<label class="col-lg-2 control-label" for="checkPwd">审核密码：</label>
+							<input type="password" class="form-control" id="checkPwd" data-field="checkPwd"/>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="button" data-info='1'  id="noPass" class="btn btn-primary">审核通过</button>
+								<button type="button" data-info='2' id="pass" class="btn btn-default">审核不通过</button>								
+							</div>
+						</div>
+					</form>
+
+					{# <div id="ShowImage_Form" class="modal hide"  tabindex="-1" role="dialog" aria-hidden="true">         
+						<div class="modal-header">
+							<button data-dismiss="modal" class="close" type="button"></button>
+						</div>
+						<div class="modal-body">
+							<div id="img_show">
+							</div>
+						</div>
+					</div> #}
+
+					<div class="modal fade" id="ShowImage_Form" tabindex="-1" role="dialog" aria-hidden="true">
+				        <div class="modal-dialog">
+				            <div class="modal-content">
+				            	<div class="modal-header">
+				                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				                </div>
+								<div class="modal-body">
+									<div id="img_show">
+									</div>
+								</div>
+
+				                
+				            </div>
+				        </div>
+				    </div>
+
+				</div>				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

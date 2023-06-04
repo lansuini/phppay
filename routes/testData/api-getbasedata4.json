@@ -1,0 +1,67 @@
+{
+    "success": 1,
+    "result": {
+        "accountType": [
+            {
+                "key": "SettledAccount",
+                "value": "已结算账户"
+            },
+            {
+                "key": "SettlementAccount",
+                "value": "未结算账户"
+            },
+            {
+                "key": "AdvanceAccount",
+                "value": "垫资账户"
+            },
+            {
+                "key": "ServiceChargeAccount",
+                "value": "手续费账户"
+            }
+        ],
+        "financeType": [
+            {
+                "key": "PayIn",
+                "value": "收入"
+            },
+            {
+                "key": "PayOut",
+                "value": "支出"
+            }
+        ],
+        "dealType": [
+            {
+                "key": "reduceBail",
+                "value": "减少保证金"
+            },
+            {
+                "key": "addBail",
+                "value": "增加保证金"
+            },
+            {
+                "key": "freeze",
+                "value": "解结金额"
+            },
+            {
+                "key": "addFreeze",
+                "value": "增加冻结金额"
+            },
+            {
+                "key": "commission",
+                "value": "佣金提成"
+            },
+            {
+                "key": "extract",
+                "value": "提款冻结"
+            },
+            {
+                "key": "extractSuc",
+                "value": "提款失败"
+            },
+            {
+                "key": "extractFee",
+                "value": "退还手续费"
+            }
+        ]
+    }
+}

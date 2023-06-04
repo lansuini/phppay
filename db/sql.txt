@@ -1,0 +1,191 @@
+﻿INSERT INTO `system_account`(`id`, `userName`, `loginName`, `loginPwd`, `loginFailNum`, `loginPwdAlterTime`, `status`, `googleAuthSecretKey`, `created_at`, `updated_at`, `role`) VALUES (1, '二牛', 'hofa', '02ae4d138ebff07cb6bb0efcca8c4546a105f520', 0, '2019-05-08 16:53:44', 'Normal', '', '2019-04-30 10:19:05', '2019-08-07 17:45:58', 4);
+
+ALTER TABLE `platform_pay_order`
+MODIFY COLUMN `payType` enum('EBank','Quick','OfflineWechatQR','OfflineAlipayQR','OnlineWechatQR','OnlineAlipayQR','OnlineWechatH5','OnlineAlipayH5','UnionPayQR','D0Settlement','UnionPay','OnlineAlipayOriginalH5','OnlineWechatOriginalH5') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '支付方式(EBank=网银,Quick=快捷,OfflineWechatQR=线下微信扫码,OfflineAlipayQR=线下支付宝扫码,\n            OnlineWechatQR=线上微信扫码,OnlineAlipayQR=线上支付宝扫码,OnlineWechatH5=线上微信H5,OnlineAlipayH5=线上支付宝H5,\nOnlineAlipayOriginalH5=线上支付宝原生H5,OnlineWechatOriginalH5=线上微信原生H5,UnionPay=银联快捷/云闪付,UnionPayQR=银联扫码,D0Settlement=D0结算)' AFTER `realOrderAmount`;
+
+ALTER TABLE `channel_pay_config` 
+MODIFY COLUMN `payType` enum('EBank','Quick','OfflineWechatQR','OfflineAlipayQR','OnlineWechatQR','OnlineAlipayQR','OnlineWechatH5','OnlineAlipayH5','UnionPayQR','D0Settlement','UnionPay','OnlineAlipayOriginalH5','OnlineWechatOriginalH5') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '支付方式(EBank=网银,Quick=快捷,OfflineWechatQR=线下微信扫码,OfflineAlipayQR=线下支付宝扫码,\n            OnlineWechatQR=线上微信扫码,OnlineAlipayQR=线上支付宝扫码,OnlineWechatH5=线上微信H5,OnlineAlipayH5=线上支付宝H5,\nOnlineAlipayOriginalH5=线上支付宝原生H5,OnlineWechatOriginalH5=线上微信原生H5,UnionPay=银联快捷/云闪付,UnionPayQR=银联扫码,D0Settlement=D0结算)' AFTER `payChannelStatus`;
+
+ALTER TABLE `amount_pay` 
+MODIFY COLUMN `payType` enum('EBank','Quick','OfflineWechatQR','OfflineAlipayQR','OnlineWechatQR','OnlineAlipayQR','OnlineWechatH5','OnlineAlipayH5','UnionPayQR','D0Settlement','UnionPay','OnlineAlipayOriginalH5','OnlineWechatOriginalH5') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '支付方式(EBank=网银,Quick=快捷,OfflineWechatQR=线下微信扫码,OfflineAlipayQR=线下支付宝扫码,\n            OnlineWechatQR=线上微信扫码,OnlineAlipayQR=线上支付宝扫码,OnlineWechatH5=线上微信H5,OnlineAlipayH5=线上支付宝H5,\nOnlineAlipayOriginalH5=线上支付宝原生H5,OnlineWechatOriginalH5=线上微信原生H5,UnionPay=银联快捷/云闪付,UnionPayQR=银联扫码,D0Settlement=D0结算)' AFTER `channelMerchantNo`;
+
+ALTER TABLE `merchant_rate` 
+MODIFY COLUMN `payType` enum('EBank','Quick','OfflineWechatQR','OfflineAlipayQR','OnlineWechatQR','OnlineAlipayQR','OnlineWechatH5','OnlineAlipayH5','UnionPayQR','D0Settlement','UnionPay','OnlineAlipayOriginalH5','OnlineWechatOriginalH5') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '支付方式(EBank=网银,Quick=快捷,OfflineWechatQR=线下微信扫码,OfflineAlipayQR=线下支付宝扫码,\n            OnlineWechatQR=线上微信扫码,OnlineAlipayQR=线上支付宝扫码,OnlineWechatH5=线上微信H5,OnlineAlipayH5=线上支付宝H5,\nOnlineAlipayOriginalH5=线上支付宝原生H5,OnlineWechatOriginalH5=线上微信原生H5,UnionPay=银联快捷/云闪付,UnionPayQR=银联扫码,D0Settlement=D0结算)' AFTER `merchantNo`;
+
+ALTER TABLE `channel_merchant_rate` 
+MODIFY COLUMN `payType` enum('EBank','Quick','OfflineWechatQR','OfflineAlipayQR','OnlineWechatQR','OnlineAlipayQR','OnlineWechatH5','OnlineAlipayH5','UnionPayQR','D0Settlement','UnionPay','OnlineAlipayOriginalH5','OnlineWechatOriginalH5') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '支付方式(EBank=网银,Quick=快捷,OfflineWechatQR=线下微信扫码,OfflineAlipayQR=线下支付宝扫码,\n            OnlineWechatQR=线上微信扫码,OnlineAlipayQR=线上支付宝扫码,OnlineWechatH5=线上微信H5,OnlineAlipayH5=线上支付宝H5,\nOnlineAlipayOriginalH5=线上支付宝原生H5,OnlineWechatOriginalH5=线上微信原生H5,UnionPay=银联快捷/云闪付,UnionPayQR=银联扫码,D0Settlement=D0结算)' AFTER `channelMerchantNo`;
+
+
+CREATE TABLE `settlement_recharge_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` enum('outsideRecharge','insideRecharge') DEFAULT 'insideRecharge' COMMENT '充值方式，insideRecharge：内部，outsideRecharge：外部',
+  `orderStatus` enum('Transfered','Success','Fail','Exception') NOT NULL COMMENT '订单状态(Transfered=正在发起,Success=支付成功,Fail=支付失败,Exception=异常)',
+  `settlementRechargeOrderNo` varchar(50) NOT NULL COMMENT '订单号',
+  `merchantNo` varchar(50) NOT NULL COMMENT '商户号',
+  `merchantId` int(11) unsigned NOT NULL COMMENT '商户ID',
+  `orderAmount` decimal(10,2) unsigned NOT NULL COMMENT '订单金额',
+  `realOrderAmount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '真实订单金额',
+  `serviceCharge` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '商户手续费',
+  `channelServiceCharge` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '上游手续费',
+  `chargeAmount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '扣掉手续费的充值金额',
+  `channel` varchar(50) NOT NULL COMMENT '上游渠道',
+  `channelMerchantId` varchar(50) NOT NULL COMMENT '上游商户ID',
+  `channelSetId` int(11) unsigned NOT NULL COMMENT 'ID',
+  `channelMerchantNo` varchar(50) NOT NULL COMMENT '上游商户号',
+  `channelNoticeTime` datetime DEFAULT NULL COMMENT '支付时间(上游处理时间)',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `order_number` (`settlementRechargeOrderNo`),
+  KEY `merchantNo` (`merchantNo`),
+  KEY `merchantId` (`merchantId`),
+  KEY `created_at` (`created_at`),
+  KEY `orderStatus` (`orderStatus`)
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
+
+ALTER TABLE `merchant` 
+ADD COLUMN `openRepayNotice` tinyint(1) NOT NULL DEFAULT 1 AFTER `openFrontNotice`;
+
+alter table channel_merchant add (
+`config` text
+);
+
+CREATE TABLE `platform_recharge_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `payType` enum('EnterpriseEBank','PersonalEBank') DEFAULT 'EnterpriseEBank' COMMENT '充值方式，EnterpriseEBank：企业网银，PersonalEBank：个人网银',
+  `orderStatus` enum('Transfered','Success','Fail','Exception') NOT NULL COMMENT '订单状态(Transfered=正在发起,Success=支付成功,Fail=支付失败,Exception=异常)',
+  `platformOrderNo` varchar(50) NOT NULL COMMENT '订单号',
+  `merchantNo` varchar(50) NOT NULL COMMENT '商户号',
+  `merchantId` int(11) unsigned NOT NULL COMMENT '商户ID',
+  `orderAmount` decimal(10,2) unsigned NOT NULL COMMENT '订单金额',
+  `realOrderAmount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '真实订单金额',
+  `serviceCharge` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '商户手续费',
+  `channelServiceCharge` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '上游手续费',
+  `chargeAmount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '扣掉手续费的充值金额',
+  `channel` varchar(50) NOT NULL COMMENT '上游渠道',
+  `channelMerchantId` varchar(50) NOT NULL COMMENT '上游商户ID',
+  `channelSetId` int(11) unsigned NOT NULL COMMENT 'ID',
+  `channelMerchantNo` varchar(50) NOT NULL COMMENT '上游商户号',
+  `rateTemp` varchar(500) NOT NULL DEFAULT '[]' COMMENT '暂存渠道费率',
+  `channelNoticeTime` datetime DEFAULT NULL COMMENT '支付时间(上游处理时间)',
+  `orderReason` varchar(50) DEFAULT NULL COMMENT '交易备注，原因',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `platformRechargeOrderNo` (`platformOrderNo`),
+  KEY `merchantNo` (`merchantNo`),
+  KEY `merchantId` (`merchantId`),
+  KEY `created_at` (`created_at`),
+  KEY `orderStatus` (`orderStatus`)
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `merchant_channel_recharge` (
+  `setId` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `merchantId` int(11) unsigned NOT NULL COMMENT '下游商户ID',
+  `merchantNo` varchar(50) NOT NULL COMMENT '下游商户号',
+  `bankCode` varchar(50) DEFAULT NULL COMMENT '银行',
+  `cardType` enum('','DEBIT','CREDIT') NOT NULL DEFAULT 'DEBIT' COMMENT '银行卡类型(DEBIT=借记卡,CREDIT=信用卡)',
+  `channel` varchar(50) NOT NULL COMMENT '渠道名称',
+  `channelMerchantId` int(11) NOT NULL DEFAULT '0' COMMENT '渠道商户',
+  `channelMerchantNo` varchar(50) NOT NULL COMMENT '渠道商户号',
+  `payType` varchar(50) NOT NULL COMMENT '充值方式，查看rechargeTypeCode文件',
+  `payChannelStatus` enum('Normal','Close') NOT NULL DEFAULT 'Normal' COMMENT '支付渠道状态',
+  `openTimeLimit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否开启控制交易时间',
+  `beginTime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间(00:00格式转整形)',
+  `endTime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间(00:00格式转整形)',
+  `openOneAmountLimit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否开启控制单笔金额控制',
+  `oneMaxAmount` decimal(10,2) unsigned NOT NULL COMMENT '单笔最大金额',
+  `oneMinAmount` decimal(10,2) unsigned NOT NULL COMMENT '单笔最小金额',
+  `openDayAmountLimit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否开启单日累计金额控制',
+  `dayAmountLimit` decimal(10,2) unsigned NOT NULL COMMENT '累计金额限制',
+  `openDayNumLimit` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否开启单日累计金额控制',
+  `dayNumLimit` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '累计次数限制',
+  `priority` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '优先级',
+  `status` enum('Normal','Close') NOT NULL DEFAULT 'Normal' COMMENT '配置状态',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`setId`),
+  KEY `merchantId` (`merchantId`)
+) ENGINE=InnoDB AUTO_INCREMENT=19471 DEFAULT CHARSET=utf8 COMMENT='商户支付渠道配置表';
+
+ALTER TABLE `channel_merchant_rate`
+	CHANGE COLUMN `payType` `payType` ENUM('EBank','Quick','OfflineWechatQR','OfflineAlipayQR','OnlineWechatQR','OnlineAlipayQR','OnlineWechatH5','OnlineAlipayH5','UnionPayQR','D0Settlement','EnterpriseEBank','PersonalEBank') NOT NULL COMMENT '支付方式(EBank=网银,Quick=快捷,OfflineWechatQR=线下微信扫码,OfflineAlipayQR=线下支付宝扫码,\\n            OnlineWechatQR=线上微信扫码,OnlineAlipayQR=线上支付宝扫码,OnlineWechatH5=线上微信H5,OnlineAlipayH5=线上支付宝H5,\\n            UnionPayQR=银联扫码,D0Settlement=D0结算,EnterpriseEBank=企业网银,PersonalEBank=个人网银)' AFTER `channelMerchantNo`,
+	CHANGE COLUMN `productType` `productType` ENUM('Pay','Settlement','Recharge') NOT NULL DEFAULT 'Settlement' COMMENT '产品类型' AFTER `payType`,
+	ADD COLUMN `fixed` FLOAT UNSIGNED NOT NULL DEFAULT '0' COMMENT '固定收费，基本收费' AFTER `rate`,
+	CHANGE COLUMN `rateType` `rateType` ENUM('Rate','FixedValue','Mixed') NOT NULL DEFAULT 'Rate' COMMENT '费率类型' AFTER `fixed`;
+
+
+
+ALTER TABLE `merchant_rate`
+	ALTER `payType` DROP DEFAULT;
+ALTER TABLE `merchant_rate`
+	CHANGE COLUMN `payType` `payType` ENUM('EBank','Quick','OfflineWechatQR','OfflineAlipayQR','OnlineWechatQR','OnlineAlipayQR','OnlineWechatH5','OnlineAlipayH5','UnionPayQR','D0Settlement','PersonalEBank','EnterpriseEBank') NOT NULL COMMENT '支付方式(EBank=网银,Quick=快捷,OfflineWechatQR=线下微信扫码,OfflineAlipayQR=线下支付宝扫码,\\n            OnlineWechatQR=线上微信扫码,OnlineAlipayQR=线上支付宝扫码,OnlineWechatH5=线上微信H5,OnlineAlipayH5=线上支付宝H5,\\n            UnionPayQR=银联扫码,D0Settlement=D0结算,EnterpriseEBank=企业网银,PersonalEBank=个人网银)' AFTER `merchantNo`,
+	CHANGE COLUMN `productType` `productType` ENUM('Pay','Settlement','Recharge') NOT NULL DEFAULT 'Pay' COMMENT '产品类型' AFTER `payType`,
+	ADD COLUMN `fixed` FLOAT UNSIGNED NOT NULL DEFAULT '0' AFTER `rate`,
+	CHANGE COLUMN `rateType` `rateType` ENUM('Rate','FixedValue','Mixed') NOT NULL DEFAULT 'Rate' COMMENT '费率类型' AFTER `fixed`;
+
+CREATE TABLE `merchant_daily_stats` (
+  `dailyId` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `merchantId` int(11) unsigned NOT NULL COMMENT '商户ID',
+  `merchantNo` varchar(50) NOT NULL COMMENT '商户号',
+  `payCount` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '今日支付笔数',
+  `payAmount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '今日支付金额',
+  `payServiceFees` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '今日支付手续费',
+  `settlementCount` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '今日代付比数',
+  `settlementAmount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '今日代付金额',
+  `settlementServiceFees` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '今日代付手续费',
+  `chargeCount` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '今日充值笔数',
+  `chargeAmount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '今日充值金额',
+  `chargeServiceFees` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '今日充值手续费',
+  `accountDate` date NOT NULL COMMENT '财务日期',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`dailyId`) USING BTREE,
+  KEY `accountDate` (`accountDate`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='商户每日数据统计';
+
+CREATE TABLE `channel_balance_query` (
+  `bId` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `channelId` int(11) unsigned NOT NULL COMMENT '渠道ID',
+  `channelNo` varchar(50) NOT NULL COMMENT '上游渠道号',
+  `channel` varchar(50) NOT NULL COMMENT '渠道名称',
+  `channelBalance` decimal(12,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '上游渠道余额',
+  `merchantCount` int(11) NOT NULL DEFAULT '0' COMMENT '上游对应的下游商户数',
+  `merchantBalance` decimal(12,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '上游对应下游的商户余额',
+  `diffValue` decimal(12,2) NOT NULL DEFAULT '0.00' COMMENT '差值',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`bId`) USING BTREE,
+  KEY `channelNo` (`channelNo`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='上游渠道余额查询';
+
+CREATE TABLE `channel_balance_issue` (
+  `issueId` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `channelId` int(11) unsigned NOT NULL COMMENT '渠道ID',
+  `channelNo` varchar(50) NOT NULL COMMENT '渠道号',
+  `bankCode` varchar(50) NOT NULL COMMENT '取款银行',
+  `cardNo` varchar(50) NOT NULL COMMENT '银行卡号',
+  `userName` varchar(50) NOT NULL COMMENT '姓名',
+  `issueAmount` decimal(12,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '取款金额',
+  `adminName` varchar(50) DEFAULT '' COMMENT '操作用户',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`issueId`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='渠道余额下发记录';
+
+CREATE TABLE `black_user_settlement` (
+  `blackUserId` int(11) NOT NULL AUTO_INCREMENT,
+  `blackUserType` varchar(50) NOT NULL DEFAULT 'EBANK',
+  `blackUserAccount` varchar(50) DEFAULT NULL,
+  `blackUserName` varchar(50) DEFAULT NULL,
+  `blackUserStatus` varchar(50) DEFAULT 'enable',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`blackUserId`),
+  KEY `blackUserType` (`blackUserType`),
+  KEY `blackUserStatus` (`blackUserStatus`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+
+
+

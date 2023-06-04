@@ -1,0 +1,28 @@
+{% extends 'app.twig' %}
+
+{% block content %}
+    <script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.min.js?ver={{ globalJsVer }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("button").click(function(){
+                $.ajax({
+                    url: '{{ notify }}',
+                    success: function(result) {
+                        $("#msg").html(result);
+                    },
+                    error: function (xhr, status, error){
+                        $("#msg").html(error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <p> Hello from {{ appName }}! </p>
+    <p> current mock orderNo: {{ orderNo }}</p>
+    <p> notify url: {{ notify }}</p>
+    <p> <button>Notify Submit</button> </p>
+
+    <h3>notify result:</h3>
+    <p style="color:red" id="msg"></p>
+{% endblock %}

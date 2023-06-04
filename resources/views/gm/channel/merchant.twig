@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>渠道用户信息管理</title>
+	
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/bootstrap.min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/core.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/icons.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/components.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/menu.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-table/min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-datetimepicker/min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/css/common.css?ver={{ globalJsVer }}" />
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.app.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.slimscroll.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/bootstrap.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/detect.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/fastclick.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/wow.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-table/min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-table/zh-CN.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/zh-CN.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/sweetalert2.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/js/common.js?ver={{ globalJsVer }}"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+	var contextPath = "/";
+	var apiPath = "/api/";
+</script>
+    <script type="text/javascript" src="/static/js/channel/merchant.js?ver={{ globalJsVer }}"></script>
+</head>
+
+<body class="fixed-left">
+	<div id="wrapper">
+
+
+        {{ include('./gm/torbar.twig', {menus: menus}) }}
+
+{{ include('./gm/menu.twig', {menus: menus}) }}
+
+		<div class="content-page">
+			<div class="content">
+				<div class="container">
+					<div class="row v-breadcrumb">
+						<ol class="pull-left breadcrumb">
+							<li>管理后台</li>
+							<li class="active" data-nav="channel-merchant">渠道商户信息管理</li>
+						</ol>
+						
+						<div class="btn-group pull-right v-control">
+				            <button type="button" class="btn btn-default" id="btnAdd">
+				                <span class="md-add" aria-hidden="true"></span> 增加
+				            </button>
+				        </div>
+					</div>
+
+					<div class="row v-operate-bar">
+						<div class="btn-group v-search-bar" id="divSearch">
+							<select class="form-control" data-field="channel"></select>
+							<input type="text" class="form-control" data-field="merchantNo" placeholder="渠道商户号" />
+							<select class="form-control" data-field="status"></select>
+							<button type="button" class="btn btn-default" id="btnSearch">
+								<span class="md md-search" aria-hidden="true"></span> 搜索
+							</button>
+							<button type="button" class="btn btn-default" id="btnNormal">
+								<span class="md-settings" aria-hidden="true"></span> 批量设置正常
+							</button>
+							<button type="button" class="btn btn-default" id="btnClose">
+								<span class="md-settings" aria-hidden="true"></span> 批量设置关闭
+							</button>
+						</div>
+					</div>
+
+					<div class="row">
+						<table id="tabMain"></table>
+					</div>
+
+					
+<link rel="stylesheet" type="text/css" href="/static/css/merchant-set.css?ver={{ globalJsVer }}" />
+<script type="text/javascript" src="/static/js/merchant-set.js?ver={{ globalJsVer }}"></script>
+
+<div class="modal fade" id="setModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">权限配置</h4>
+			</div>
+
+			<div class="modal-body v-modal-row">
+				<div class="form-group clearfix">
+					<label class="control-label" for="selOpenPay">支付开关：</label>
+					<select class="form-control v-form-open" id="selOpenPay" data-field="openPay"></select>
+					<input type="hidden" id="txtMerchantNo4Set" data-field="merchantNo" />
+				</div>
+
+				<div class="form-group clearfix">
+					<label class="control-label" for="selOpenSettlement">结算开关：</label>
+					<select class="form-control v-form-open" id="selOpenSettlement" data-field="openSettlement"></select>
+					<input type="text" class="form-control" id="txtOneSettlementMaxAmount" data-field="oneSettlementMaxAmount" placeholder="单卡单日最大结算金额" maxlength="17" />
+				</div>
+
+				<div class="form-group clearfix">
+					<label class="control-label" for="selOpenEntrustSettlement">直连委托结算开关：</label>
+					<select class="form-control v-form-open" id="selOpenEntrustSettlement" data-field="openEntrustSettlement"></select>
+				</div>
+
+				<!--
+				<div class="form-group clearfix">
+					<label class="control-label" for="selOpenWorkdaySettlement">工作日垫资结算开关：</label>
+					<select class="form-control v-form-open" id="selOpenWorkdaySettlement" data-field="openWorkdaySettlement"></select>
+					<select class="form-control v-form-type" id="selWorkdaySettlementType" data-field="workdaySettlementType"></select>
+					<br>
+					<input type="text" class="form-control v-form-rate" id="txtWorkdaySettlementRate" data-field="workdaySettlementRate" placeholder="垫资比例" maxlength="17" />
+					<input type="text" class="form-control" id="txtWorkdaySettlementMaxAmount" data-field="workdaySettlementMaxAmount" placeholder="工作日最大垫资金额" maxlength="17" />
+				</div>
+
+				<div class="form-group clearfix">
+					<label class="control-label" for="selOpenHolidaySettlement">节假日垫资结算开关：</label>
+					<select class="form-control v-form-open" id="selOpenHolidaySettlement" data-field="openHolidaySettlement"></select>
+					<select class="form-control v-form-type" id="selHolidaySettlementType" data-field="holidaySettlementType"></select>
+					<br>
+					<input type="text" class="form-control v-form-rate" id="txtHolidaySettlementRate" data-field="holidaySettlementRate" placeholder="垫资比例" maxlength="17" />
+					<input type="text" class="form-control" id="txtHolidaySettlementMaxAmount" data-field="holidaySettlementMaxAmount" placeholder="节假日最大垫资金额" maxlength="17" />
+				</div>
+				-->
+				<div class="form-group clearfix">
+					<label class="control-label" for="txtSettlementTime">结算时间：</label>
+					<input type="text" class="form-control v-form-time" id="txtSettlementTime" data-field="settlementTime" placeholder="结算时间" maxlength="4" />
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<input type="button" class="btn btn-default" value="关闭" data-dismiss="modal" />
+				<input type="button" class="btn btn-primary" value="提交" id="btnSubmitSet" />
+			</div>
+		</div>
+	</div>
+</div>
+
+					
+					<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title"></h4>
+								</div>
+
+								<div class="modal-body v-modal-row">
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="txtMerchantNo4Edit">渠道商户号：</label>
+										<input type="text" class="form-control" id="txtMerchantNo4Edit" data-field="merchantNo" placeholder="请输入商户号" />
+										<input type="hidden" id="txtMerchantId4Edit" data-field="merchantId" />
+									</div>
+
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="selChannel">上游渠道：</label>
+										<select class="form-control" id="selChannel" data-field="channel"></select>
+									</div>
+
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="txtDelegateDomain">代理域名：</label>
+										<input type="text" class="form-control" id="txtDelegateDomain" data-field="delegateDomain" />
+									</div>
+
+									{# <div class="form-group clearfix form-edit">
+										<label class="col-lg-2 control-label" for="txtParam">商户参数：</label>
+										<textarea class="form-control" id="txtParam" data-field="param" style="width:300px; height:70px"></textarea>
+									</div> #}
+
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="selStatus">状态：</label>
+										<select class="form-control" id="selStatus" data-field="status"></select>
+									</div>
+									<div id="merchant_param">
+
+									</div>
+
+								</div>
+
+								<div class="modal-footer">
+									<input type="button" class="btn btn-default" value="关闭" data-dismiss="modal" />
+									<input type="button" class="btn btn-primary" value="提交" id="btnSubmit" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="addBalance" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title"></h4>
+								</div>
+
+								<div class="modal-body v-modal-row">
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="balance">原有金额：</label>
+										<input type="text" class="form-control" id="balance" data-field="balance" disabled/>
+									</div>
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="txtNoBalance">充值金额：</label>
+										<input type="text" class="form-control" id="txtNoBalance" data-field="balance" placeholder="请输入充值金额" />
+										<input type="hidden" id="txtBalance" data-field="balance" />
+									</div>
+
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="txtNoBalanceTrue">再次输入充值金额：</label>
+										<input type="text" class="form-control" id="txtNoBalanceTrue" data-field="balance" placeholder="请再次输入充值金额" />
+									</div>
+
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="merchNo"  >商户号：</label>
+										<input type="text" class="form-control" id="merchNo"  disabled data-field="merchantNo" />
+									</div>
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="account"  >请输入充值账号：</label>
+										<input type="text" class="form-control" id="channelAccount"     data-field="channelAccount"  />
+									</div>
+
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="orderNumber"  >请输入充值流水号：</label>
+										<input type="text" class="form-control" id="notifyOrderNumber" placeholder="请输入充值流水号"   data-field="notifyOrderNumber" />
+									</div>
+								</div>
+
+								<div class="modal-footer">
+									<input type="button" class="btn btn-default" value="关闭" data-dismiss="modal" />
+									<input type="button" class="btn btn-primary" value="提交" id="btnBalanceSubmit" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="selectTime" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title"></h4>
+								</div>
+
+								<div class="modal-body v-modal-row">
+									<input type="text" class="form-control" data-field="endDate" id="txtEndDate" placeholder="账务日期" />
+									<input type="hidden" class="form-control" data-field="txtMerchandId" id="txtMerchandId" placeholder="账务日期" />
+								</div>
+
+								<div class="modal-footer">
+									<input type="button" class="btn btn-default" value="关闭" data-dismiss="modal" />
+									<input type="button" class="btn btn-primary" value="提交" id="btnCheckSubmit" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

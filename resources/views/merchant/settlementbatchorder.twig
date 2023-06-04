@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>发起代付订单</title>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/bootstrap.min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/core.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/icons.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/components.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/menu.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-table/min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-datetimepicker/min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/css/common.css?ver={{ globalJsVer }}" />
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.app.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.slimscroll.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/bootstrap.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/detect.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/fastclick.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/wow.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-table/min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-table/zh-CN.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/zh-CN.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/sweetalert2.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/js/common.js?ver={{ globalJsVer }}"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+        var contextPath = "/";
+        var apiPath = "/api/";
+        $('#myTabs a[href="#profile"]').tab('show') // Select tab by name
+        $('#myTabs a:first').tab('show') // Select first tab
+        $('#myTabs a:last').tab('show') // Select last tab
+        $('#myTabs li:eq(2) a').tab('show') // Select third tab (0-indexed)
+
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+	</script>
+
+	<script type="text/javascript" src="/static/js/settlementorder/batchCreate.js?ver={{ globalJsVer }}"></script>
+	<style type="text/css">
+		.form-group{margin:0 0 7px 0}
+		#confirmModal .modal-body span{position:absolute; margin-top:7px}
+	</style>
+</head>
+
+<body class="fixed-left">
+<div id="wrapper">
+
+
+	<div class="topbar">
+		<div class="topbar-left">
+			<div class="text-center">
+				<a class="logo"><span>支付平台-商户后台</span></a>
+			</div>
+		</div>
+
+		<div class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="">
+					<ul class="nav navbar-nav navbar-right pull-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="true">
+								<i class="ion-person"></i>{{ userName }}<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="javascript:common.logout();"><i class="ion-power"></i> 退出</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    {{ include('./gm/menu.twig', {menus: menus}) }}
+
+	<div class="content-page">
+		<div class="content">
+			<div class="container" id="divContainer">
+				<div class="row v-breadcrumb">
+					<ol class="pull-left breadcrumb">
+						<li>商户后台</li>
+						<li>创建批量代付</li>
+						<li class="active" data-nav="settlementbatchorder-create">创建</li>
+					</ol>
+					<div class="btn-group pull-right v-control">
+						<button type="button" class="btn btn-default" onclick="window.open('{{ downBanklUrl }}')">
+							<span class="glyphicon glyphicon-download" aria-hidden="true"></span> 银行卡批量代付模版
+						</button>
+						<button type="button" class="btn btn-default" onclick="window.open('{{ downAlipaylUrl }}')">
+							<span class="glyphicon glyphicon-download" aria-hidden="true"></span> 支付宝批量代付模版
+						</button>
+					</div>
+				</div>
+
+				<ul class="nav nav-tabs" role="tablist" >
+					<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" >文件上传方式批量代付</a></li>
+					<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" >文本填写方式批量代付</a></li>
+				</ul>
+
+				<div class="row" id="divContainer">
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="home">
+							<div class="form-group clearfix">
+								<label class="control-label" style="width: 100%;text-align: left;margin-left: 30px;color: red">
+									<div class="row v-operate-bar">
+										<div class="btn-group v-search-bar" id="divSearch">
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说明：<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.第一行为列头，务必按照模板文件格式！<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.银行批量代付中，银行代码，对接文档中有对应编码<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.中间若格式错误则会跳过该条代付，继续后续代付<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.一旦确定，代付不可更改，不可撤销及退回，请自行承担<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.请务必上传csv格式的文档<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.不可直接将word改扩展名为csv，需另存为csv格式后上传
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.文档中金额以元为单位
+										</div>
+									</div>
+								</label>
+							</div>
+
+							<div class="form-group clearfix">
+								<label class="col-lg-2 control-label" for="btnFile">文件（csv）：</label>
+								<input type="file" id="btnFile" style="margin-top:5px" />
+							</div>
+
+							<div class="form-group clearfix">
+								<div class="form-group clearfix">
+									<label class="col-lg-2 control-label" id="forGoogleAuth" for="googleAuth">谷歌验证码：</label>
+									<input type="text"  class="form-control" id="googleAuth" data-field="googleAuth" placeholder="请输入谷歌验证码" maxlength="20" />
+								</div>
+								<div class="form-group clearfix">
+									<label class="col-lg-2 control-label" for="txtApplyPerson">支付密码：</label>
+									<input type="password" autocomplete="new-password" class="form-control" id="txtApplyPerson" data-field="applyPerson" placeholder="请输入支付密码" maxlength="20" />
+								</div>
+								<div class="form-group clearfix">
+									<label class="col-lg-2 control-label" for="txtOrderReason">付款原因：</label>
+									<input type="text" class="form-control" id="txtOrderReason" data-field="orderReason" placeholder="请输入付款原因" maxlength="100" />
+								</div>
+								<div class="form-group clearfix" id="uploadNotifyDiv" style="display: none">
+									<label class="col-lg-2 control-label" id="forUploadNotify" for="uploadNotify">温馨提示：</label>
+									<span id="uploadNotifyText" style="color: #f00f00;"></span>
+									<input type="hidden" class="form-control" id="uploadNotify" data-field="uploadNotify" value="" />
+								</div>
+								<div class="form-group clearfix v-control-block">
+									<input type="button" class="btn btn-primary" value="确认" id="btnSubmit" />
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="profile">
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#alipy" aria-controls="profile" role="tab" data-toggle="tab" >支付宝批量代付</a></li>
+								<li role="presentation"><a href="#card" aria-controls="home" role="tab" data-toggle="tab" >银行卡批量代付</a></li>
+							</ul>
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane fade" id="card">
+									<table data-toggle="table">
+										<thead><tr>
+											<th> 付款金额</th>
+											<th>收款信息</th>
+											<th>收款银行</th>
+											<th>收款账号</th>
+											<th>收款人姓名</th>
+											<th>开户省份</th>
+											<th>开户城市</th>
+											<th>开户区</th>
+											<th>付款原因</th>
+										</tr></thead>
+										<tbody id="cardInfoTable">
+											<tr id="trNum1">
+												<td><input type="text" class="form-control" name="txtOrderAmount" data-field="orderAmount" placeholder="请输入付款金额" maxlength="15" /></td>
+												<td><select type="text" class="form-control" name="txtBankAccountInfo" onchange="showBankInfo(1)" data-field="bankAccountInfo" maxlength="30" ></select></td>
+												<td><select class="form-control" name="selBankCode" data-field="bankCode"  placeholder="请输入收款银行"></select></td>
+												<td><input type="text" class="form-control" onchange="selectBankInfo(this)" name="txtBankAccountNo" data-field="bankAccountNo" placeholder="请输入收款账号" maxlength="30" /></td>
+												<td><input type="text" class="form-control" name="txtBankAccountName" data-field="bankAccountName" placeholder="请输入收款人姓名" maxlength="30" ></td>
+												<td><input type="text" class="form-control" name="txtProvince" data-field="province" placeholder="请输入开户省份" maxlength="10" /></td>
+												<td> <input type="text" class="form-control" name="txtCity" data-field="city" placeholder="请输入开户城市" maxlength="10" /></td>
+												<td><input type="text" class="form-control" name="txtDistrict" data-field="bankName" placeholder="请输入开户区/县" maxlength="10" /></td>
+												{#<td> <input type="text" class="form-control" name="txtOrderReason" data-field="orderReason" placeholder="请输入付款原因" maxlength="100" /></td>#}
+												<td id="btnStrs">
+													<button type="button" class="btn btn-primary btn-sm" onclick="addDiv(1)">增加</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div style="margin-top: 20px" class="form-group clearfix"><div class="form-group clearfix">
+											<label class="col-lg-2 control-label" id="forGoogleAuth" for="googleAuth">谷歌验证码：</label>
+											<input type="text"  class="form-control" id="googleAuth" data-field="googleAuth" placeholder="请输入谷歌验证码" maxlength="20" />
+										</div>
+
+										<div class="form-group clearfix">
+											<label class="col-lg-2 control-label" for="txtApplyPersonStr">支付密码：</label>
+											<input type="password" autocomplete="new-password" class="form-control" id="txtApplyPersonStr" data-field="applyPersonStr" placeholder="请输入支付密码" />
+										</div>
+										<div class="form-group clearfix">
+											<label class="col-lg-2 control-label" for="txtOrderReasonStr" >付款原因：</label>
+											<input type="text" class="form-control"data-field="orderReasonStr" placeholder="请输入付款原因"id="txtOrderReasonStr" />
+										</div>
+										<div class="form-group clearfix v-control-block">
+											<input type="button" class="btn btn-primary" value="确认" id="btnSubmitAll" />
+										</div>
+									</div>
+								</div>
+
+								<div role="tabpanel" class="tab-pane fade in active" id="alipy">
+									<table data-toggle="table">
+										<thead><tr>
+											<th>付款金额</th>
+											<th>支付宝账号</th>
+											<th>重复收款账号</th>
+											<th>收款人姓名</th>
+											<th>操作</th>
+										</tr></thead>
+										<tbody id="aliInfoTable">
+										<tr id="trAliNum1">
+											<td><input type="text" class="form-control" name="txtOrderAmount" data-field="orderAmount" placeholder="请输入付款金额" maxlength="15" /></td>
+											<td><input type="text" class="form-control" name="txtAliAccountNo" data-field="aliAccountNo" placeholder="请输入收款账号" maxlength="30" /></td>
+											<td><input type="text" class="form-control" name="txtAliAccountNo2" placeholder="请再次输入收款账号" maxlength="30" /></td>
+											<td><input type="text" class="form-control" name="txtAliAccountName" data-field="aliAccountName" placeholder="请输入收款人姓名" maxlength="30" ></td>
+                                            {#<td> <input type="text" class="form-control" name="txtOrderReason" data-field="orderReason" placeholder="请输入付款原因" maxlength="100" /></td>#}
+											<td id="btnAliStrs">
+												<button type="button" class="btn btn-primary btn-sm" onclick="addAliDiv(1)">增加</button>
+											</td>
+										</tr>
+										</tbody>
+									</table>
+									<div style="margin-top: 20px" class="form-group clearfix">
+										<div class="form-group clearfix">
+											<div class="form-group clearfix">
+												<label class="col-lg-2 control-label" id="forGoogleAuth" for="googleAuth">谷歌验证码：</label>
+												<input type="text"  class="form-control" required="required" id="googleAuth" data-field="googleAuth" placeholder="请输入谷歌验证码" maxlength="20" />
+											</div>
+											<label class="col-lg-2 control-label" for="txtApplyPersonStr">支付密码：</label>
+											<input type="password" autocomplete="new-password" class="form-control" id="txtApplyPersonStrAli" data-field="applyPersonStr" placeholder="请输入支付密码" />
+										</div>
+										<div class="form-group clearfix">
+											<label class="col-lg-2 control-label" for="txtOrderReasonStr" >付款原因：</label>
+											<input type="text" class="form-control"data-field="orderReasonStr" placeholder="请输入付款原因" id="txtOrderReasonStrAli" />
+										</div>
+										<div class="form-group clearfix" id="alipayNotifyDiv" style="display: none">
+											<label class="col-lg-2 control-label" id="forAlipayNotify" for="alipayNotify">温馨提示：</label>
+											<span id="alipayNotifyText" style="color: #f00f00;"></span>
+											<input type="hidden" class="form-control" id="alipayNotify" data-field="alipayNotify" value="" />
+										</div>
+										<div class="form-group clearfix v-control-block">
+											<input type="button" class="btn btn-primary" value="确认" id="btnAliSubmitAll" />
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

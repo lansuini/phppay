@@ -1,0 +1,333 @@
+{
+    "success": 1,
+    "result": {},
+    "total": 62,
+    "rows": [
+        {
+            "channel": "WANSMOBILEPAY",
+            "channelDesc": "万商移动支付",
+            "channelMerchantId": "d3bf87ec428a40c7b18e27487743c51e",
+            "channelMerchantNo": "500017030203",
+            "dayAmountCount": 0,
+            "merchantNo": "70000020",
+            "payChannelId": "6bf8e6a62fb54eeeb801e3bec1e57aef",
+            "payTypeDescs": [
+                "线上支付宝H5"
+            ],
+            "payTypes": [
+                "OnlineAlipayH5"
+            ],
+            "shortName": "pk"
+        },
+        {
+            "channel": "JLCP510",
+            "channelDesc": "鑫汇盈支付",
+            "channelMerchantId": "2d171e5190714d40a4a4ab8b36b631ac",
+            "channelMerchantNo": "180778823",
+            "dayAmountCount": 0,
+            "merchantNo": "70000020",
+            "payChannelId": "b8f0e011aad2406ea5008cdb0020fc13",
+            "payTypeDescs": [
+                "线上微信扫码"
+            ],
+            "payTypes": [
+                "OnlineWechatQR"
+            ],
+            "shortName": "pk"
+        },
+        {
+            "channel": "WANSMOBILEPAY",
+            "channelDesc": "万商移动支付",
+            "channelMerchantId": "6e493fd328ba4101be1443f0cb520e6e",
+            "channelMerchantNo": "500017030801",
+            "dayAmountCount": 0,
+            "merchantNo": "70000001",
+            "payChannelId": "56935f26bc194a979ca1059e599cd222",
+            "payTypeDescs": [
+                "线上支付宝扫码"
+            ],
+            "payTypes": [
+                "OnlineAlipayQR"
+            ],
+            "shortName": "test"
+        },
+        {
+            "channel": "JLCP510",
+            "channelDesc": "鑫汇盈支付",
+            "channelMerchantId": "2d171e5190714d40a4a4ab8b36b631ac",
+            "channelMerchantNo": "180778823",
+            "dayAmountCount": 0,
+            "merchantNo": "70000001",
+            "payChannelId": "577e6a3ee9434f6481fbd54a296ad8b9",
+            "payTypeDescs": [
+                "线上微信扫码"
+            ],
+            "payTypes": [
+                "OnlineWechatQR"
+            ],
+            "shortName": "test"
+        },
+        {
+            "channel": "WANSMOBILEPAY",
+            "channelDesc": "万商移动支付",
+            "channelMerchantId": "d3bf87ec428a40c7b18e27487743c51e",
+            "channelMerchantNo": "500017030203",
+            "dayAmountCount": 0,
+            "merchantNo": "70000001",
+            "payChannelId": "525ad61ea0c8480e9887f553025ec5af",
+            "payTypeDescs": [
+                "线上支付宝H5"
+            ],
+            "payTypes": [
+                "OnlineAlipayH5"
+            ],
+            "shortName": "test"
+        },
+        {
+            "channel": "YiYou55",
+            "channelDesc": "易友支付",
+            "channelMerchantId": "d6f7393f7f074af5b44bc7d6eea6814d",
+            "channelMerchantNo": "55002",
+            "dayAmountCount": 0,
+            "merchantNo": "70000001",
+            "payChannelId": "6ed2cb5782d24b37aa90ac2af157a358",
+            "payTypeDescs": [
+                "线上微信H5"
+            ],
+            "payTypes": [
+                "OnlineWechatH5"
+            ],
+            "shortName": "test"
+        },
+        {
+            "channel": "WANSMOBILEPAY",
+            "channelDesc": "万商移动支付",
+            "channelMerchantId": "a2aa2ad0f6fb4686931f0d9c4a84bc43",
+            "channelMerchantNo": "500017030202",
+            "dayAmountCount": 0,
+            "merchantNo": "70000019",
+            "payChannelId": "947d78f84fcd4a0fb936d4821d4188c7",
+            "payTypeDescs": [
+                "线上微信扫码"
+            ],
+            "payTypes": [
+                "OnlineWechatQR"
+            ],
+            "shortName": "美高梅集团（银联扫码 网银 快捷）"
+        },
+        {
+            "channel": "WANSMOBILEPAY",
+            "channelDesc": "万商移动支付",
+            "channelMerchantId": "d3bf87ec428a40c7b18e27487743c51e",
+            "channelMerchantNo": "500017030203",
+            "dayAmountCount": 0,
+            "merchantNo": "70000019",
+            "payChannelId": "966ef030c89e415c82c12369f7201269",
+            "payTypeDescs": [
+                "线上支付宝H5"
+            ],
+            "payTypes": [
+                "OnlineAlipayH5"
+            ],
+            "shortName": "美高梅集团（银联扫码 网银 快捷）"
+        },
+        {
+            "channel": "HMJR",
+            "channelDesc": "HMJR",
+            "channelMerchantId": "37adfd7f3fa1459c97492312a5b3d124",
+            "channelMerchantNo": "499019",
+            "dayAmountCount": 0,
+            "merchantNo": "70000023",
+            "payChannelId": "2cc742f33e9c421baa8f1de19c994ca1",
+            "payTypeDescs": [
+                "线上微信扫码"
+            ],
+            "payTypes": [
+                "OnlineWechatQR"
+            ],
+            "shortName": "万商"
+        },
+        {
+            "channel": "YiYou55",
+            "channelDesc": "易友支付",
+            "channelMerchantId": "d6f7393f7f074af5b44bc7d6eea6814d",
+            "channelMerchantNo": "55002",
+            "dayAmountCount": 0,
+            "merchantNo": "70000023",
+            "payChannelId": "d6b9ef4d5f3a4e0c94e3dae695a61ca5",
+            "payTypeDescs": [
+                "线上支付宝H5",
+                "线上微信H5"
+            ],
+            "payTypes": [
+                "OnlineAlipayH5",
+                "OnlineWechatH5"
+            ],
+            "shortName": "万商"
+        },
+        {
+            "channel": "DChuang",
+            "channelDesc": "鼎创支付",
+            "channelMerchantId": "4ec7c6c62e6a46e68c869617aa139cad",
+            "channelMerchantNo": "190283845",
+            "dayAmountCount": 0,
+            "merchantNo": "70000025",
+            "payChannelId": "f9371cd2d3224546817d06dcb22704a7",
+            "payTypeDescs": [
+                "线上支付宝扫码"
+            ],
+            "payTypes": [
+                "OnlineAlipayQR"
+            ],
+            "shortName": "云彩厅"
+        },
+        {
+            "channel": "WANSMOBILEPAY",
+            "channelDesc": "万商移动支付",
+            "channelMerchantId": "6e493fd328ba4101be1443f0cb520e6e",
+            "channelMerchantNo": "500017030801",
+            "dayAmountCount": 0,
+            "merchantNo": "70000025",
+            "payChannelId": "5e35489173fb4d2aafbcbfad1cc29bd3",
+            "payTypeDescs": [
+                "线上微信扫码"
+            ],
+            "payTypes": [
+                "OnlineWechatQR"
+            ],
+            "shortName": "云彩厅"
+        },
+        {
+            "channel": "WANSPAY",
+            "channelDesc": "万商支付",
+            "channelMerchantId": "d109296560354661b1cdbcb31cc683e7",
+            "channelMerchantNo": "500017010301",
+            "dayAmountCount": 0,
+            "merchantNo": "70000025",
+            "payChannelId": "586ca8c9995c45eeaf60865efbd73ef4",
+            "payTypeDescs": [
+                "网银"
+            ],
+            "payTypes": [
+                "EBank"
+            ],
+            "shortName": "云彩厅"
+        },
+        {
+            "channel": "WANSMOBILEPAY",
+            "channelDesc": "万商移动支付",
+            "channelMerchantId": "09f7ef660b714156883c1f2d4a5a46c9",
+            "channelMerchantNo": "500017030201",
+            "dayAmountCount": 0,
+            "merchantNo": "70000025",
+            "payChannelId": "bdcb8e78c57d4ac5b54fc1e63a5ba830",
+            "payTypeDescs": [
+                "银联扫码"
+            ],
+            "payTypes": [
+                "UnionPayQR"
+            ],
+            "shortName": "云彩厅"
+        },
+        {
+            "channel": "DChuang",
+            "channelDesc": "鼎创支付",
+            "channelMerchantId": "60aa9efb0e25413f9541e03508cd26b6",
+            "channelMerchantNo": "190277515",
+            "dayAmountCount": 0,
+            "merchantNo": "70000025",
+            "payChannelId": "d42716fcfaba49359fbb0169b1e03219",
+            "payTypeDescs": [
+                "线上支付宝H5"
+            ],
+            "payTypes": [
+                "OnlineAlipayH5"
+            ],
+            "shortName": "云彩厅"
+        },
+        {
+            "channel": "WANSQUICKPAY",
+            "channelDesc": "万商快捷支付",
+            "channelMerchantId": "e2d4f85331364efa886246fb2c045b45",
+            "channelMerchantNo": "500017020301",
+            "dayAmountCount": 0,
+            "merchantNo": "70000025",
+            "payChannelId": "15a49e0a4ae141bd9a41a2e677ecf51d",
+            "payTypeDescs": [
+                "快捷"
+            ],
+            "payTypes": [
+                "Quick"
+            ],
+            "shortName": "云彩厅"
+        },
+        {
+            "channel": "DChuang",
+            "channelDesc": "鼎创支付",
+            "channelMerchantId": "4ec7c6c62e6a46e68c869617aa139cad",
+            "channelMerchantNo": "190283845",
+            "dayAmountCount": 0,
+            "merchantNo": "70000024",
+            "payChannelId": "4f851316f5fa45e2ab123c727c22b17d",
+            "payTypeDescs": [
+                "线上支付宝扫码"
+            ],
+            "payTypes": [
+                "OnlineAlipayQR"
+            ],
+            "shortName": "万商支付宝红包"
+        },
+        {
+            "channel": "WANSMOBILEPAY",
+            "channelDesc": "万商移动支付",
+            "channelMerchantId": "6e493fd328ba4101be1443f0cb520e6e",
+            "channelMerchantNo": "500017030801",
+            "dayAmountCount": 0,
+            "merchantNo": "70000021",
+            "payChannelId": "4fe16afa9cd246508c753a042e2fd163",
+            "payTypeDescs": [
+                "线上微信扫码"
+            ],
+            "payTypes": [
+                "OnlineWechatQR"
+            ],
+            "shortName": "永利利"
+        },
+        {
+            "channel": "SKSQ",
+            "channelDesc": "收款神器",
+            "channelMerchantId": "ab3df93ddd41456cb0635bf656c28a86",
+            "channelMerchantNo": "66607014",
+            "dayAmountCount": 0,
+            "merchantNo": "70000014",
+            "payChannelId": "3f999038a86e4f9685837dfc5f48fba3",
+            "payTypeDescs": [
+                "线上支付宝H5",
+                "线上支付宝扫码"
+            ],
+            "payTypes": [
+                "OnlineAlipayH5",
+                "OnlineAlipayQR"
+            ],
+            "shortName": "PK平台支付宝H5"
+        },
+        {
+            "channel": "SKSQ",
+            "channelDesc": "收款神器",
+            "channelMerchantId": "f2e4c2bd773946ddb19c961db69f6585",
+            "channelMerchantNo": "66607012",
+            "dayAmountCount": 0,
+            "merchantNo": "70000012",
+            "payChannelId": "432a938857c74e378cc597d4a04e3f74",
+            "payTypeDescs": [
+                "线上支付宝H5",
+                "线上支付宝扫码"
+            ],
+            "payTypes": [
+                "OnlineAlipayH5",
+                "OnlineAlipayQR"
+            ],
+            "shortName": "美高梅集团"
+        }
+    ]
+}

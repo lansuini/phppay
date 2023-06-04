@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>商户代付渠道配置</title>
+	
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/bootstrap.min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/core.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/icons.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/components.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/menu.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-table/min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-datetimepicker/min.css?ver={{ globalJsVer }}" />
+<link rel="stylesheet" type="text/css" href="/static/css/common.css?ver={{ globalJsVer }}" />
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.app.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.slimscroll.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/bootstrap.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/detect.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/fastclick.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap/js/wow.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-table/min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-table/zh-CN.min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/min.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/zh-CN.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/plugin/sweetalert2.js?ver={{ globalJsVer }}"></script>
+<script type="text/javascript" src="/static/js/common.js?ver={{ globalJsVer }}"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+	var contextPath = "/";
+	var apiPath = "/api/";
+</script>
+    <script type="text/javascript" src="/static/plugin/bootstrap-table-export/min.js?ver={{ globalJsVer }}"></script>
+    <script type="text/javascript" src="/static/plugin/bootstrap-table-export/export.min.js?ver={{ globalJsVer }}"></script>
+    <script type="text/javascript" src="/static/js/settlementorder/channel.js?ver={{ globalJsVer }}"></script>
+</head>
+
+<body class="fixed-left">
+	<div id="wrapper">
+		
+
+<div class="topbar">
+	<div class="topbar-left">
+		<div class="text-center">
+			<a class="logo"><span>支付平台-商户后台</span></a>
+		</div>
+	</div>
+
+	<div class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<div class="">
+				<ul class="nav navbar-nav navbar-right pull-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="true">
+							<i class="ion-person"></i> {{ userName }} <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="javascript:common.logout();"><i class="ion-power"></i> 退出</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{ include('./gm/menu.twig', {menus: menus}) }}
+
+		<div class="content-page">
+			<div class="content">
+				<div class="container">
+					<div class="row v-breadcrumb">
+						<ol class="pull-left breadcrumb">
+							<li>商户后台</li>
+							<li class="active" data-nav="merchant-settlementchannel">代付渠道</li>
+						</ol>
+
+					</div>
+
+					<div class="row v-operate-bar">
+						<div class="btn-group v-search-bar" id="divSearch">
+							<select class="form-control" data-field="channel" id="selChannel"></select>
+							{#<input type="text" class="form-control" data-field="channelMerchantNo" placeholder="渠道商户号" />#}
+							{#<input type="text" class="form-control" data-field="merchantNo" placeholder="商户号" />#}
+							{#<input type="text" class="form-control" data-field="shortName" placeholder="商户简称" />#}
+							<button type="button" class="btn btn-default" id="btnSearch">
+								<span class="md md-search" aria-hidden="true"></span> 搜索
+							</button>
+						</div>
+					</div>
+
+					<div class="row">
+						<table id="tabMain"></table>
+						{#<p>Tips:账户余额每5分钟自动刷新</p>#}
+					</div>
+
+					<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title">代付充值</h4>
+								</div>
+
+								<div class="modal-body v-modal-row">
+
+									<div class="form-group clearfix">
+										<label hidden class="col-lg-2 control-label" for="txtMerchantNo">商户号：</label>
+										<input type="hidden" class="form-control" id="txtMerchantNo" data-field="merchantNo" placeholder="请输入商户号" disabled="disabled" />
+									</div>
+
+									<div class="form-group clearfix">
+										<label class="col-lg-2 control-label" for="txtAmount">金额：</label>
+										<input type="text" class="form-control" id="txtAmount" data-field="amount" placeholder="请输入金额" />
+										<input type="hidden" disabled class="form-control" id="txtRandom" data-field="random" />
+									</div>
+
+
+								</div>
+
+								<div class="modal-footer">
+									<input type="button" class="btn btn-default" value="关闭" data-dismiss="modal" />
+									<input type="button" class="btn btn-primary" value="提交" id="btnSubmit" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

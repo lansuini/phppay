@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>商户资金汇总</title>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/bootstrap.min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/core.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/icons.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/components.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/menu.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-table/min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-datetimepicker/min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/css/common.css?ver={{ globalJsVer }}" />
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.app.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.slimscroll.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/bootstrap.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/detect.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/fastclick.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/wow.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-table/min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-table/zh-CN.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/zh-CN.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/sweetalert2.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/js/common.js?ver={{ globalJsVer }}"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+        var contextPath = "/";
+        var apiPath = "/api/";
+	</script>
+	<script type="text/javascript" src="/static/js/agent/agentFinance.js?ver={{ globalJsVer }}"></script>
+</head>
+
+<body class="fixed-left">
+<div id="wrapper">
+
+
+    {{ include('./gm/torbar.twig', {menus: menus}) }}
+
+    {{ include('./gm/menu.twig', {menus: menus}) }}
+
+	<div class="content-page">
+		<div class="content">
+			<div class="container">
+				<div class="row v-breadcrumb">
+					<ol class="pull-left breadcrumb">
+						<li>管理后台</li>
+						<li class="active" data-nav="agent-agentFinance">代理资金记录</li>
+					</ol>
+				</div>
+
+				<div class="row v-operate-bar">
+					<div class="btn-group v-search-bar" id="divSearch">
+						<input type="text" class="form-control" data-field="agentName" placeholder="代理账号" />
+						<input type="text" class="form-control" data-field="platformOrderNo" placeholder="交易流水号" />
+                        {# <input type="text" class="form-control" data-field="transactionNo" placeholder="交易流水号" /> #}
+
+						<select class="form-control" data-field="dealType" id="selDealType"></select>
+
+						<input type="text" class="form-control" data-field="beginTime" id="txtBeginTime" placeholder="交易开始时间" />
+						<input type="text" class="form-control" data-field="endTime" id="txtEndTime" placeholder="交易结束时间" />
+
+						<button type="button" class="btn btn-default" id="btnSearch">
+							<span class="md md-search" aria-hidden="true"></span> 搜索
+						</button>
+						<button type="button" class="btn btn-default" id="btnExport">
+							<span class="md md-search" aria-hidden="true"></span> 导出
+						</button>
+					</div>
+				</div>
+
+				<div class="row">
+					<table id="tabMain"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

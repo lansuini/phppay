@@ -1,0 +1,69 @@
+{
+    "success": 1,
+    "result": {
+        "payOrderStatus": [
+            {
+                "key": "WaitPayment",
+                "value": "未支付"
+            },
+            {
+                "key": "Success",
+                "value": "成功"
+            },
+            {
+                "key": "Expired",
+                "value": "已过期"
+            }
+        ],
+        "payType": [
+            {
+                "key": "EBank",
+                "value": "网银"
+            },
+            {
+                "key": "Quick",
+                "value": "快捷"
+            },
+            {
+                "key": "OfflineWechatQR",
+                "value": "线下微信扫码"
+            },
+            {
+                "key": "OfflineAlipayQR",
+                "value": "线下支付宝扫码"
+            },
+            {
+                "key": "OnlineWechatQR",
+                "value": "线上微信扫码"
+            },
+            {
+                "key": "OnlineAlipayQR",
+                "value": "线上支付宝扫码"
+            },
+            {
+                "key": "OnlineWechatH5",
+                "value": "线上微信H5"
+            },
+            {
+                "key": "OnlineAlipayH5",
+                "value": "线上支付宝H5"
+            },
+            {
+                "key": "UnionPayQR",
+                "value": "银联扫码"
+            },
+            {
+                "key": "EntrustSettlement",
+                "value": "委托代付"
+            },
+            {
+                "key": "AdvanceSettlement",
+                "value": "垫资结算"
+            },
+            {
+                "key": "HolidaySettlement",
+                "value": "节假日结算"
+            }
+        ]
+    }
+}

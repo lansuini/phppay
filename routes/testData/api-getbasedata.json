@@ -1,0 +1,151 @@
+{
+    "success": 1,
+    "result": {
+        "payOrderStatus": [
+            {
+                "key": "WaitPayment",
+                "value": "未支付"
+            },
+            {
+                "key": "Success",
+                "value": "成功"
+            },
+            {
+                "key": "Expired",
+                "value": "已过期"
+            }
+        ],
+        "payType": [
+            {
+                "key": "EBank",
+                "value": "网银"
+            },
+            {
+                "key": "Quick",
+                "value": "快捷"
+            },
+            {
+                "key": "OfflineWechatQR",
+                "value": "线下微信扫码"
+            },
+            {
+                "key": "OfflineAlipayQR",
+                "value": "线下支付宝扫码"
+            },
+            {
+                "key": "OnlineWechatQR",
+                "value": "线上微信扫码"
+            },
+            {
+                "key": "OnlineAlipayQR",
+                "value": "线上支付宝扫码"
+            },
+            {
+                "key": "OnlineWechatH5",
+                "value": "线上微信H5"
+            },
+            {
+                "key": "OnlineAlipayH5",
+                "value": "线上支付宝H5"
+            },
+            {
+                "key": "UnionPayQR",
+                "value": "银联扫码"
+            },
+            {
+                "key": "EntrustSettlement",
+                "value": "委托代付"
+            },
+            {
+                "key": "AdvanceSettlement",
+                "value": "垫资结算"
+            },
+            {
+                "key": "HolidaySettlement",
+                "value": "节假日结算"
+            }
+        ],
+        "channel": [
+            {
+                "key": "InnerChannel",
+                "value": "内部渠道"
+            },
+            {
+                "key": "SKSQ",
+                "value": "收款神器"
+            },
+            {
+                "key": "YIYU",
+                "value": "依域电子支付"
+            },
+            {
+                "key": "HAIER_KJT",
+                "value": "海尔快捷通支付"
+            },
+            {
+                "key": "HC_YEMADAI",
+                "value": "汇潮一麻袋支付"
+            },
+            {
+                "key": "KQ_99BILL",
+                "value": "快钱支付"
+            },
+            {
+                "key": "Alipay_SKM_QR",
+                "value": "支付宝收款码封装成H5"
+            },
+            {
+                "key": "ETRANSFAR",
+                "value": "传化代付"
+            },
+            {
+                "key": "HANDPAY",
+                "value": "翰银支付"
+            },
+            {
+                "key": "NP",
+                "value": "NP支付"
+            },
+            {
+                "key": "LXZF",
+                "value": "隆兴支付"
+            },
+            {
+                "key": "WANSPAY",
+                "value": "万商支付"
+            },
+            {
+                "key": "WANSQUICKPAY",
+                "value": "万商快捷支付"
+            },
+            {
+                "key": "WANSMOBILEPAY",
+                "value": "万商移动支付"
+            },
+            {
+                "key": "DChuang",
+                "value": "鼎创支付"
+            },
+            {
+                "key": "YiYou55",
+                "value": "易友支付"
+            },
+            {
+                "key": "UPay",
+                "value": "U付"
+            },
+            {
+                "key": "HMJR",
+                "value": "HMJR"
+            },
+            {
+                "key": "DCHK",
+                "value": "大财和坤支付"
+            },
+            {
+                "key": "JLCP510",
+                "value": "鑫汇盈支付"
+            }
+        ]
+    }
+}

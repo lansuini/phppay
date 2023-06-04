@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>支付订单</title>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/bootstrap.min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/core.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/icons.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/components.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap/css/menu.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-table/min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/plugin/bootstrap-datetimepicker/min.css?ver={{ globalJsVer }}" />
+	<link rel="stylesheet" type="text/css" href="/static/css/common.css?ver={{ globalJsVer }}" />
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.app.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/jquery.slimscroll.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/bootstrap.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/detect.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/fastclick.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap/js/wow.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-table/min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-table/zh-CN.min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/min.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/bootstrap-datetimepicker/zh-CN.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/plugin/sweetalert2.js?ver={{ globalJsVer }}"></script>
+	<script type="text/javascript" src="/static/js/common.js?ver={{ globalJsVer }}"></script>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+        var contextPath = "/";
+        var apiPath = "/api/";
+	</script>
+	<link rel="stylesheet" type="text/css" href="/static/css/agent.css?ver={{ globalJsVer }}" />
+	<script type="text/javascript" src="/static/js/agent/front/merchantRate.js?ver={{ globalJsVer }}"></script>
+</head>
+
+<body class="fixed-left">
+	<div id="wrapper">
+		{{ include('./agent/topbar.twig') }}
+		{{ include('./menu.twig', {menus: menus}) }}
+		<div class="row" id="divContainer">
+			<div class="content-page">
+				<div class="content">
+					<div class="container">
+						<div class="row v-breadcrumb">
+							<ol class="pull-left breadcrumb">
+								<li>代理后台</li>
+								<li class="active" data-nav="payorder">我的费率</li>
+							</ol>
+						</div>
+
+						<div class="row v-operate-bar">
+							<div class="btn-group v-search-bar" id="divSearch">
+								<input id = "selectMerchantNo" type="text" class="form-control" data-field="merchantNo" placeholder="商户号" />
+								<select class="form-control" data-field="selProType" id="selProType"></select>
+								<select class="form-control" data-field="selPayType" id="selPayType"></select>
+								<select class="form-control" data-field="selRateType" id="selRateType"></select>
+								<button type="button" class="btn btn-default" id="btnSearch">
+									<span class="md md-search" aria-hidden="true"></span> 搜索
+								</button>
+							</div>
+						</div>
+
+						<div class="row">
+							<table id="tabMain"></table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title"></h4>
+				</div>
+
+				<div class="modal-body v-modal-row">
+
+					<div class="form-group clearfix">
+						<label class="col-lg-2 control-label" for="payTypeDesc">产品类型：</label>
+						<label id="payTypeDesc" style="font-weight:100;text-align: left" ></label>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-lg-2 control-label" for="productTypeDesc">支付方式：</label>
+						<label id="productTypeDesc" style="font-weight:100;text-align: left" ></label>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-lg-2 control-label" for="bankCodeDesc">银行：</label>
+						<label id="bankCodeDesc" style="font-weight:100;text-align: left;" ></label>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-lg-2 control-label" for="cardTypeDesc">卡种：</label>
+						<label id="cardTypeDesc" style="font-weight:100;text-align: left" ></label>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-lg-2 control-label" for="rateTypeDesc">费率类型：</label>
+						<label id="rateTypeDesc" style="font-weight:100;text-align: left" ></label>
+					</div>
+					<div class="form-group clearfix">
+						<label class="col-lg-2 control-label" for="rate">费率值：</label>
+						<input type="text" class="form-control" id="rate" data-field="rate" placeholder="请输入费率值" />
+					</div>
+
+					<div class="form-group clearfix">
+						<label class="col-lg-2 control-label" for="minServiceCharge">最小手续费：</label>
+						<input type="text" class="form-control" id="minServiceCharge" data-field="minServiceCharge" placeholder="请输入最小手续费" />
+					</div>
+
+					<div class="form-group clearfix">
+						<label class="col-lg-2 control-label" for="maxServiceCharge">最大手续费：</label>
+						<input type="text" class="form-control" id="maxServiceCharge" data-field="maxServiceCharge" placeholder="请输入最大手续费" />
+					</div>
+
+					<div class="form-group clearfix">
+						<label class="col-lg-2 control-label" for="fixed">固定值：</label>
+						<input type="text" class="form-control" id="fixed" data-field="fixed" placeholder="请输入固定值" />
+						<input type="hidden" class="form-control" id="rateId" data-field="rateId" value="" />
+						<input type="hidden" class="form-control" id="rateType" data-field="rateType" value="" />
+						<input type="hidden" class="form-control" id="payType" data-field="payType" value="" />
+						<input type="hidden" class="form-control" id="productType" data-field="productType" value="" />
+					</div>
+
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" value="关闭" data-dismiss="modal" />
+						<input type="button" class="btn btn-primary" value="提交" id="btnSubmit" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
